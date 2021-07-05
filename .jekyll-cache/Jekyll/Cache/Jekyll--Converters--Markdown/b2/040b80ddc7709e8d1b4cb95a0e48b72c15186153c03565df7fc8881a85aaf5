@@ -1,0 +1,63 @@
+I"�<p>우선순위는 일반적으로 먼저 들어간 데이터가 먼저 나오는 큐와는 다른, 별도로 정의된 규칙에 따른 우선순위대로 나오는 큐를 말한다.
+클래스 선언 시 Comparable 을 이용하여 구현 가능하며, Comparator 의 클래스로도 사용할 수 있다. 본 장에서는 Comparable 를 활용한 예제를 나타내었다.
+동일 조건일 때는 return 이전에 if 문으로 분기하여 추가 구현 가능하다.</p>
+
+<ul>
+  <li>coding</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.PriorityQueue</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">Student</span> <span class="kd">implements</span> <span class="nc">Comparable</span><span class="o">&lt;</span><span class="nc">Student</span><span class="o">&gt;{</span>
+	<span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+	<span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+	
+	<span class="kd">public</span> <span class="nf">Student</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="nc">Student</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+		<span class="c1">// age 가 같을 경우 name 첫번째 문자열 기준으로 내림차순</span>
+		<span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">==</span> <span class="n">o</span><span class="o">.</span><span class="na">age</span><span class="o">)</span> <span class="k">return</span> <span class="n">o</span><span class="o">.</span><span class="na">toString</span><span class="o">().</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">-</span> <span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">.</span><span class="na">toString</span><span class="o">().</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>  
+		<span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">-</span> <span class="n">o</span><span class="o">.</span><span class="na">age</span><span class="o">;</span> <span class="c1">// age 로 오름차순</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Solution</span><span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		
+		<span class="nc">PriorityQueue</span><span class="o">&lt;</span><span class="nc">Student</span><span class="o">&gt;</span> <span class="n">pq</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PriorityQueue</span><span class="o">&lt;</span><span class="nc">Student</span><span class="o">&gt;();</span>
+		
+		<span class="n">pq</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Student</span><span class="o">(</span><span class="s">"Park"</span><span class="o">,</span> <span class="mi">23</span><span class="o">));</span>
+		<span class="n">pq</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Student</span><span class="o">(</span><span class="s">"Kim"</span><span class="o">,</span> <span class="mi">12</span><span class="o">));</span>
+		<span class="n">pq</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Student</span><span class="o">(</span><span class="s">"Ace"</span><span class="o">,</span> <span class="mi">66</span><span class="o">));</span>
+		<span class="n">pq</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Student</span><span class="o">(</span><span class="s">"Lee"</span><span class="o">,</span> <span class="mi">45</span><span class="o">));</span>
+		<span class="n">pq</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Student</span><span class="o">(</span><span class="s">"Hong"</span><span class="o">,</span> <span class="mi">44</span><span class="o">));</span>
+		<span class="n">pq</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Student</span><span class="o">(</span><span class="s">"Park"</span><span class="o">,</span> <span class="mi">66</span><span class="o">));</span>
+		<span class="n">pq</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Student</span><span class="o">(</span><span class="s">"Choi"</span><span class="o">,</span> <span class="mi">66</span><span class="o">));</span>
+		
+		<span class="k">while</span><span class="o">(!</span><span class="n">pq</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+			<span class="nc">Student</span> <span class="n">st</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">age</span> <span class="o">+</span> <span class="s">"\t"</span><span class="o">+</span> <span class="n">st</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
+		<span class="o">}</span>
+ 
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>출력값</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>12	Kim
+23	Park
+44	Hong
+45	Lee
+66	Ace
+66	Park
+66	Choi
+</code></pre></div></div>
+:ET

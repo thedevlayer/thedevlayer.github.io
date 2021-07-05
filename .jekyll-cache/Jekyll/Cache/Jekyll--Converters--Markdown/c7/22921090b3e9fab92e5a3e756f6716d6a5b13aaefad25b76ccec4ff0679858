@@ -1,0 +1,371 @@
+I"�<!-- ## 목차
+1. [프로젝트 목적](#1장.-프로젝트-목적)
+1. [프로젝트 개요](#프로젝트-개요)
+1. [프로젝트 소스](#3장.-프로젝트-소스)
+1. [주요-기능별-파이썬-이해하기](#4장.-주요-기능별-파이썬-이해하기)
+1. [마무리](#5장.-마무리)
+
+--- -->
+
+<h2 id="1장-프로젝트-목적">1장. 프로젝트 목적</h2>
+<p>파이썬을 이용한 프로그램을 만드는 것이 일차적인 목표였으며, 평소 주식에 관심이 있는 나로서는 보유 종목에 대한 주식 관리 프로그램을 만드는 것이 본 프로젝트를 하는데 있어서의 동기부여 및 효율적이라는 판단에 주식 관리 프로그램 구현을 목적으로 하였다.</p>
+
+<hr />
+
+<h2 id="2장-프로젝트-개요">2장. 프로젝트 개요</h2>
+<p>실시간 호가, 매매 등의 고급 기능보다는 보유 주식과 비중 등을 확인해 보고자 하였으며, 그러한 기능을 구현하는 것이 1차적인 목표이다.</p>
+
+<ul>
+  <li>개발 도구
+    <ul>
+      <li>아나콘다 conda 4.7.12</li>
+      <li>Python 3.6.8 32 bit</li>
+      <li>PyQt5 5.13.0
+        <ul>
+          <li>접속링크 : <a href="https://www.riverbankcomputing.com/software/pyqt/download5," title="PyQt5 Download">PyQt5 Download</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>주요 API
+    <ul>
+      <li>대신증권 크레온 플러스 API
+        <ul>
+          <li>접속링크 :  <a href="https://money2.creontrade.com/E5/WTS/Customer/GuideTrading/CW_TradingSystemPlus_Page.aspx?m=9505&amp;p=8815&amp;v=8633," title="creon link">CREON Plus</a></li>
+          <li>FAQ 상의 아래 내용과 같이 크레온 플러스 API 는 32 비트만 지원 가능하였기에, 위 개발도구의 Python 도 32 비트로 설치하여 개발하였다.</li>
+        </ul>
+
+        <blockquote>
+          <p>플러스 사용시 윈도우 운영체제는 32bit 또는 64bit 모두 가능합니다. 플러스 API가 32bit로 개발되어서 플러스 API를 호출하는 응용프로그램(엑셀, Visual Studio, 파이썬 등)은 반드시 32bit 버전으로 개발되어야 합니다.</p>
+        </blockquote>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+<h2 id="3장-프로젝트-소스">3장. 프로젝트 소스</h2>
+<ul>
+  <li>접속링크 :  <a href="https://github.com/dcjamespark/Creon-with-Python">Github</a></li>
+</ul>
+
+<hr />
+
+<h2 id="4장-주요-기능별-파이썬-이해하기">4장. 주요 기능별 파이썬 이해하기</h2>
+
+<p>메인 화면은 아래와 같으며 로그인, 보유 종목, 전략 검색, 로그 등의 화면으로 간단하게 구성하였다.</p>
+
+<p><img src="/assets/images/main.jpg" title="메인 화면" alt="메인 화면" /><br /></p>
+
+<h3 id="로그인">로그인</h3>
+<p>로그인 화면은 아래와 같이 구성되어 있으며, Application.start 속성을 이용하여 크레온 플러스 API 에 접속을 시도한다.</p>
+
+<p><img src="/assets/images/login.jpg" title="메인 화면" alt="메인 화면" /><br /></p>
+
+<p>사용자 비밀번호와 공인인증서 비밀번호의 값을 노출시키지 않기 위해 위와 같이 QLineEdit 에 password 속성을 사용하였다. 물론 보안에 취약하긴 마찬가지지만 일단 타인의 눈에 보이지 않기 위해 어쩔 수 없는 방편으로 구성하였다. 다시 한 번 설명하지만 본 프로젝트는 파이썬 공부를 위해 제작하였으므로 참고만 하길 바란다.</p>
+
+<p>패스워드 속성을 위한 코드는 아래와 같이 간단히 구현할 수 있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">urllib2</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">inputPw</span><span class="p">.</span><span class="n">setEchoMode</span><span class="p">(</span><span class="n">QtWidgets</span><span class="p">.</span><span class="n">QLineEdit</span><span class="p">.</span><span class="n">Password</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">inputCert</span><span class="p">.</span><span class="n">setEchoMode</span><span class="p">(</span><span class="n">QtWidgets</span><span class="p">.</span><span class="n">QLineEdit</span><span class="p">.</span><span class="n">Password</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>이후 크레온 플러스 설치 시 생성된 CoStarter.exe 를 이용하여 아래와 같이 접속한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">app</span> <span class="o">=</span> <span class="n">application</span><span class="p">.</span><span class="n">Application</span><span class="p">()</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="s">"C:\CREON\STARTER\coStarter.exe //prj:cp /id:%s /pwd:%s /pwdcert:%s /autostart"</span> <span class="o">%</span> <span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">pw</span><span class="p">,</span> <span class="n">cert</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>일반적으로 HTS 에 접속할 때에는 사용자 인증, 주요 기능 업데이트 등을 동시에 처리하므로 다소 시간이 소요된다. 크레온 플러스 API 접속하기 위한 소요 시간 역시 비슷하다. 따라서 화면이 버벅거리는 듯한 현상을 방지하기 위해 스레드를 구현하였다. 초보로서 스레드를 구현하는 것은 다소 이해하기 어렵고 까다로웠으나 아래와 같이 구현하였으며 다른 방식의 스레드도 아래에 별도로 언급하였다.</p>
+
+<ol>
+  <li>스레드 선언
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="bp">self</span><span class="p">.</span><span class="n">threadclass</span> <span class="o">=</span> <span class="n">ThreadClass</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">pw</span><span class="p">,</span> <span class="n">cert</span><span class="p">)</span>
+     <span class="bp">self</span><span class="p">.</span><span class="n">threadclass</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+</code></pre></div>    </div>
+  </li>
+  <li>스레드 진행 및 login 함수 호출
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ThreadClass</span><span class="p">(</span><span class="n">QtCore</span><span class="p">.</span><span class="n">QThread</span><span class="p">):</span>
+ <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">pw</span><span class="p">,</span> <span class="n">cert</span><span class="p">):</span>
+     <span class="nb">super</span><span class="p">(</span><span class="n">ThreadClass</span><span class="p">,</span> <span class="bp">self</span><span class="p">).</span><span class="n">__init__</span><span class="p">()</span>
+     <span class="bp">self</span><span class="p">.</span><span class="n">access</span> <span class="o">=</span> <span class="n">handler</span><span class="p">.</span><span class="n">access</span><span class="p">()</span>
+     <span class="bp">self</span><span class="p">.</span><span class="nb">id</span> <span class="o">=</span> <span class="nb">id</span>
+     <span class="bp">self</span><span class="p">.</span><span class="n">pw</span> <span class="o">=</span> <span class="n">pw</span>
+     <span class="bp">self</span><span class="p">.</span><span class="n">cert</span> <span class="o">=</span> <span class="n">cert</span>
+
+ <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+     <span class="k">if</span> <span class="n">CONNECTED</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+         <span class="n">QMessageBox</span><span class="p">.</span><span class="n">about</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">"Message"</span><span class="p">,</span> <span class="s">"크레온 플러스 로그인 중입니다."</span><span class="p">)</span>
+         <span class="k">return</span>
+
+     <span class="bp">self</span><span class="p">.</span><span class="n">access</span><span class="p">.</span><span class="n">get_data_creon</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="nb">id</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">pw</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">cert</span><span class="p">)</span>
+     <span class="bp">self</span><span class="p">.</span><span class="n">access</span><span class="p">.</span><span class="n">login_creon</span><span class="p">()</span>
+</code></pre></div>    </div>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   * threadclass 인스턴스를 생성 후, self.threadclass.start() 를 통해서 run 함수를 실행한다. self.access.login_creon() 함수 내 coStarter.exe 를 호출한다.
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="상태바">상태바</h3>
+
+<p>위 메인화면 하단에 시간과 서버접속 여부를 볼 수 있는 상태바를 구현하였다. 마찬가지로 스레드로 구현하였으며, 여기서는 간단히 아래와 같이 threading.Timer 속성을 이용한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">showCurrentTime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">CONNECTED</span><span class="p">:</span>
+            <span class="n">conStatus</span> <span class="o">=</span> <span class="s">'Server Connected'</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">conStatus</span> <span class="o">=</span> <span class="s">'Server Not Connected'</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">statusBar</span><span class="p">().</span><span class="n">showMessage</span><span class="p">(</span><span class="s">"현재 시간: "</span> <span class="o">+</span> <span class="n">QTime</span><span class="p">.</span><span class="n">currentTime</span><span class="p">().</span><span class="n">toString</span><span class="p">(</span><span class="s">"hh:mm:ss"</span><span class="p">)</span> <span class="o">+</span> <span class="s">" | "</span> <span class="o">+</span> <span class="n">conStatus</span><span class="p">)</span>
+        <span class="n">threading</span><span class="p">.</span><span class="n">Timer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">showCurrentTime</span><span class="p">).</span><span class="n">start</span><span class="p">()</span>
+</code></pre></div></div>
+<ul>
+  <li>함수 선언, 해당 로직 구현 후 하단에 threading.Timer 로 1초마다 해당 함수를 start 할 수 있게 하였으며 간단한 주기적인 스레드로 활용할 때 유용한 듯 하다.</li>
+</ul>
+
+<h3 id="잔고조회">잔고조회</h3>
+
+<p>잔고조회 버튼을 클릭하면 크레온 API 로부터 보유 계좌의 잔고 값들을 불러와 아래처럼 QtableWidget 를 이용하여 표현하였다.</p>
+
+<p><img src="/assets/images/balances.jpg" title="메인 화면" alt="메인 화면" /><br /></p>
+
+<p>API 로부터 잔고 정보를 불러와 데이터프레임을 적절히 가공하고 테이블에 띄우고 로딩하는데 뭔가 오래 걸린다는 생각에 ProgressBar 를 구현하였다. 구글링을 하면 보통 100% 까지 진행되는 로직으로 for 문 내에서 count 하는 예제만 있다. 여기서는 언제 종료될지 모르므로 % 값이 없이 그냥 흘러가는 로딩바를 구현하는데 어떻게 할 지 막막했으나, 정답은 의외로 간단하였다. 일반적으로 min 0, max 100 을 설정하나 내가 원하는 답은 max 0 으로 하면 무한 로딩으로 된다는 것이며 이것이 문제를 해결하는데 키포인트이다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="bp">self</span><span class="p">.</span><span class="n">progress</span><span class="p">.</span><span class="n">setMaximum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div></div>
+<p>화면에서의 progressbar 는 아래 하단의 그림과 같다.</p>
+
+<p><img src="/assets/images/progress.jpg" title="메인 화면" alt="메인 화면" /><br /></p>
+
+<ul>
+  <li>ProgressBar 진행 동안 스레드로 받아 처리하기</li>
+</ul>
+
+<ol>
+  <li>메인 화면 초기화 시 progressBar를 먼저 생성하고 hide 로 일단 감춘다.
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="bp">self</span><span class="p">.</span><span class="n">progress</span> <span class="o">=</span> <span class="n">QProgressBar</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+     <span class="c1"># self.progress.setGeometry(self.width()/2 - PROGRESS_WIDTH / 2,self.height()/2 - PROGRESS_HEIGHT / 2,
+</span>     <span class="c1">#                           PROGRESS_WIDTH, PROGRESS_HEIGHT)
+</span>     <span class="bp">self</span><span class="p">.</span><span class="n">progress</span><span class="p">.</span><span class="n">setGeometry</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">width</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">PROGRESS_WIDTH</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">280</span><span class="p">,</span><span class="bp">self</span><span class="p">.</span><span class="n">height</span><span class="p">()</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span>
+                               <span class="n">PROGRESS_WIDTH</span><span class="p">,</span> <span class="n">PROGRESS_HEIGHT</span><span class="p">)</span>
+
+     <span class="bp">self</span><span class="p">.</span><span class="n">progress</span><span class="p">.</span><span class="n">setTextVisible</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+     <span class="bp">self</span><span class="p">.</span><span class="n">progress</span><span class="p">.</span><span class="n">setFormat</span><span class="p">(</span><span class="s">'Loading...'</span><span class="p">)</span>
+     <span class="bp">self</span><span class="p">.</span><span class="n">progress</span><span class="p">.</span><span class="n">setMaximum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+     <span class="bp">self</span><span class="p">.</span><span class="n">progress</span><span class="p">.</span><span class="n">hide</span><span class="p">()</span>
+</code></pre></div>    </div>
+  </li>
+  <li>잔고 조회 호출 시 progressBar 를 show 하고, QThreadPool 에 넣어둔다.
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>         <span class="bp">self</span><span class="p">.</span><span class="n">progress</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+         <span class="n">runnable</span> <span class="o">=</span> <span class="n">get_AccBalance_Runnable</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+         <span class="n">QThreadPool</span><span class="p">.</span><span class="n">globalInstance</span><span class="p">().</span><span class="n">start</span><span class="p">(</span><span class="n">runnable</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>스레드 실행 함수는 아래와 같다. 잔고 정보를 받은 후에, QMetaObject.invokeMethod 를 이용하여 show_AccBalance 라는 slot 으로 이동한다.</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">get_AccBalance_Runnable</span><span class="p">(</span><span class="n">QRunnable</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">dialog</span><span class="p">):</span>
+        <span class="n">QRunnable</span><span class="p">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">dialog</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">account_list</span> <span class="o">=</span> <span class="n">handler</span><span class="p">.</span><span class="n">Account_list</span><span class="p">()</span>
+        <span class="n">acc_balance</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">account_list</span><span class="p">.</span><span class="n">get_account_list</span><span class="p">()</span>
+
+        <span class="c1"># 이전로직 종료된 후에 아래 메서드로 output 을 가지고 간다.
+</span>        <span class="n">QMetaObject</span><span class="p">.</span><span class="n">invokeMethod</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">w</span><span class="p">,</span> <span class="s">"show_AccBalance"</span><span class="p">,</span>
+                                 <span class="n">Qt</span><span class="p">.</span><span class="n">QueuedConnection</span><span class="p">,</span>
+                                 <span class="n">Q_ARG</span><span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="n">acc_balance</span><span class="p">))</span>
+</code></pre></div></div>
+
+<ol>
+  <li>테이블에 각 정보를 넣은 후 종료 전 self.progress.hide() 로 progressBar 를 없앤다.</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="o">@</span><span class="n">pyqtSlot</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">show_AccBalance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">acc_balance</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">acc_balance</span><span class="p">)</span>
+
+        <span class="n">acc_balance1</span> <span class="o">=</span> <span class="n">collections</span><span class="p">.</span><span class="n">OrderedDict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">acc_balance</span><span class="p">.</span><span class="n">items</span><span class="p">(),</span>
+
+        <span class="p">............</span>  <span class="n">중간</span> <span class="n">생략</span>  <span class="p">..............</span>
+
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">tableWidget_2</span><span class="p">.</span><span class="n">horizontalHeader</span><span class="p">().</span><span class="n">sortIndicatorChanged</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">tableWidget_2</span><span class="p">.</span><span class="n">resizeRowsToContents</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">progress</span><span class="p">.</span><span class="n">hide</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>이 외에 여러 종목을 정렬해서 보면 낫지 않을까, 해당 종목을 클릭하여 차트보기나, 네이버 주식으로 바로가기 하면 더 편하지 않을까 하는 욕심 아닌 욕심이 생겨 위와 같이 추가 기능을 구현하였다.</p>
+
+<ul>
+  <li>차트보기</li>
+</ul>
+
+<p>matplotlib 라이브러리를 사용하였으며, 구현하는데 가장 시간이 많으 걸린 부분 중의 하나이다. 잔고조회 화면에서 우클릭 후 차트보기를 통해 해당 종목의 차트를 바로 조회할 수 있으며, 해당 창에서 종목코드 또는 종목명을 바로 입력하여 일봉, 주봉, 월봉을 확인할 수 있다. 오른쪽의 200 이라는 숫자는 몇개의 데이터를 가져올 것인지를 설정할 수 있다. 예를 들어 최근 100일치의 일봉 데이터를 가져오고 싶다면, 조회 데이터 수 100 입력 후 일봉을 클릭하면 확인할 수 있다.</p>
+
+<p><img src="/assets/images/schart.jpg" title="차트" alt="chart" /><br /></p>
+
+<p>크레온 플러스 API 에서는 일별 현재가 정보에서 최근 일자를 첫번째로 가져와 그대로 plotting 한다면 시계열의 반대로 차트가 생성된다. 따라서 아래와 같이 데이터 프레임을 역으로 정렬하였다. 매우 간단하지만 데이터 프레임을 쓰면서 가장 활용도가 높았다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">day_info</span><span class="p">.</span><span class="n">reverse</span><span class="p">()</span>
+</code></pre></div></div>
+<p>이동 평균선의 경우, 아래와 같이 rolling 속성을 이용하여 MA5 컬럼에 넣을 수 있다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df_data</span><span class="p">[</span><span class="s">'MA5'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_data</span><span class="p">[</span><span class="s">'close'</span><span class="p">].</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">).</span><span class="n">mean</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>아래가 캔들 스틱을 구현하는 주로 로직이다. mpl_finance 모듈을 이용하여 한 줄의 코드로 plot 이 가능하다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mpl_finance</span><span class="p">.</span><span class="n">candlestick2_ohlc</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">ax</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s">'open'</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s">'high'</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s">'low'</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s">'close'</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">colorup</span><span class="o">=</span><span class="s">'r'</span><span class="p">,</span> <span class="n">colordown</span><span class="o">=</span><span class="s">'b'</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li>네이버주식 바로가기</li>
+</ul>
+
+<p>주식정보 하단에 네이버 바로가기를 통하여 네이버 금융 사이트로 해당 종목의 정보를 조회할 수 있다. webbrowser 모듈을 이용하여 아래와 같이 접속 가능하다. 아래 주석된 부분과 같이 조회하고자 하는 종목의 코드를 6자리로 붙여넣어 구현할 수 있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">webbrowser</span>
+
+            <span class="n">url</span> <span class="o">=</span> <span class="s">'https://finance.naver.com/item/main.nhn?code='</span> <span class="o">+</span> <span class="n">code_text</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+            <span class="c1"># url = 'https://finance.naver.com/item/main.nhn?code=263720'
+</span>            <span class="n">webbrowser</span><span class="p">.</span><span class="nb">open</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>팝업 메뉴</li>
+</ul>
+
+<p>웹에서 검색하기 힘들었던 부분이다. 아래 코드를 통해 오른쪽 클릭 팝업메뉴를 구성할 수 있다. 해당 부분의 전체 코드는 아래와 같다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+        <span class="n">top_menu</span> <span class="o">=</span> <span class="n">QMenu</span><span class="p">()</span>
+        <span class="n">menu</span> <span class="o">=</span> <span class="n">top_menu</span><span class="p">.</span><span class="n">addMenu</span><span class="p">(</span><span class="s">"Menu"</span><span class="p">)</span>
+
+        <span class="n">chart</span> <span class="o">=</span> <span class="n">menu</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="s">"차트보기"</span><span class="p">)</span>
+        <span class="n">menu</span><span class="p">.</span><span class="n">addSeparator</span><span class="p">()</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="n">menu</span><span class="p">.</span><span class="n">addMenu</span><span class="p">(</span><span class="s">"주식 정보"</span><span class="p">)</span>
+
+        <span class="n">info1</span> <span class="o">=</span> <span class="n">info</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="s">"네이버 금융"</span><span class="p">)</span>
+        <span class="n">info2</span> <span class="o">=</span> <span class="n">info</span><span class="p">.</span><span class="n">addAction</span><span class="p">(</span><span class="s">"기타 2"</span><span class="p">)</span>
+
+        <span class="n">action</span> <span class="o">=</span> <span class="n">menu</span><span class="p">.</span><span class="n">exec_</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">tableWidget_2</span><span class="p">.</span><span class="n">viewport</span><span class="p">().</span><span class="n">mapToGlobal</span><span class="p">(</span><span class="n">position</span><span class="p">))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"action : "</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="n">chart</span><span class="p">:</span>
+            <span class="c1"># self.showChart(item_text, 'D')
+</span>            <span class="bp">self</span><span class="p">.</span><span class="n">newWindow</span> <span class="o">=</span> <span class="n">MyWindow</span><span class="p">(</span><span class="n">item_text</span><span class="p">)</span>
+
+            <span class="c1"># self.newWindow.show()
+</span>
+        <span class="k">elif</span> <span class="n">action</span> <span class="o">==</span> <span class="n">info1</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="s">'https://finance.naver.com/item/main.nhn?code='</span> <span class="o">+</span> <span class="n">code_text</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+            <span class="c1"># url = 'https://finance.naver.com/item/main.nhn?code=263720'
+</span>            <span class="n">webbrowser</span><span class="p">.</span><span class="nb">open</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>계좌정보</li>
+</ul>
+
+<p>우측 상단에 계좌 정보에 대한 요약으로 보유 종목 수량, 매입금액, 평가금액, 수익률 등을 한 눈에 볼 수 있게 구성하였다. 예제로 캡쳐한 것은 본인 계좌로서 손익이 파란색으로 아직 마이너스이다. 빨간 색으로 변하는 그 날을 기대해 본다. 각 금액들은 임의로 모자이크 처리했으므로 이해해 주시기 바랍니다.</p>
+
+<p><img src="/assets/images/summary_origin.jpg" title="summary_origin" alt="summary_origin" /><br /></p>
+
+<p>메인 화면에 해당 정보가 있다보니 항상 금액과 수익률 등이 보여지는게 눈에 거슬려 아래와 같이 체크박스를 통해 마스킹 제어할 수 있도록 구현하였다. 체크했을 때만 해당 정보들이 보이게 설정하였다.</p>
+
+<p><img src="/assets/images/summary_marking.jpg" title="summary_origin" alt="summary_origin" /><br /></p>
+
+<p>‘*’ 로 마스킹을 할 수 있는 속성이 있지 않을까 해서 구글링을 해봤으나 찾지는 못해 아래와 같이 구현하였다. 금액 자리수만큼 곱하면 * 의 개수가 여러 개로 출력되는 것이다. 파이썬의 가장 큰 장점은 생각되로 다 된다는 것이다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">spre</span> <span class="o">=</span> <span class="s">'*'</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">pre_amount</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h3 id="분포-조회">분포 조회</h3>
+
+<p>보유하고 있는 주식에 대해 직관적으로 확인할 수 있는 것이 차트라고 생각한다. 특히 많은 종목을 보유하고 있는 경우 어떠한 주식들이 비중이 높은지 또는 한 눈에 보기에 어떠한 분포를 가지고 있는지 확인하고 싶은 때 유용한 것 같다. 약 180 종목 보유하고 있어 차트가 보기 힘들 정도이다. 그래서 거래소와 코스닥 분포도 표현하였다.</p>
+
+<ul>
+  <li><em>종목별 비중</em></li>
+</ul>
+
+<p><img src="/assets/images/balchart_pie1.jpg" title="차트" alt="chart" /><br /></p>
+
+<p>보유 종목명, 금액등의 데이터 프레임을 아래 함수를 이용하여 정렬하였다. 데이터 프레임의 장점 중 하나는 아래와 같이 쉽게 정렬할 수 있다는 점이다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">zipdf</span><span class="p">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s">'market'</span><span class="p">,</span> <span class="s">'amount'</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>고민을 많이 했던 부분이 그림과 같이 도넛 모양의 이중 pie 차트를 구성하는 것이었다. 여러 시행 착오 끝에 아래의 코드로 완성하였다. 물론 어느 검색 자료를 참조한 것이긴 하나 현 시점에서 검색 자료를 찾지 못했다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="bp">self</span><span class="p">.</span><span class="n">fig</span><span class="p">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">fig</span><span class="p">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">smallcolors</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">getcolor</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">small_values</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">splitindex</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">first_color</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">second_color</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">smallcolors</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="p">.</span><span class="n">pie</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">small_values</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">smallcolors</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">small_labels</span><span class="p">,</span> <span class="n">autopct</span><span class="o">=</span><span class="s">'%.1f%%'</span><span class="p">,</span>
+                <span class="n">pctdistance</span><span class="o">=</span><span class="mf">0.85</span><span class="p">,</span> <span class="n">shadow</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">wedgeprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">'white'</span><span class="p">),</span> <span class="n">textprops</span><span class="o">=</span><span class="p">{</span><span class="s">'fontsize'</span><span class="p">:</span> <span class="mi">6</span><span class="p">},</span> <span class="n">startangle</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="p">.</span><span class="n">pie</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">big_values</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">big_colors</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">big_labels</span><span class="p">,</span> <span class="n">autopct</span><span class="o">=</span><span class="s">'%.1f%%'</span><span class="p">,</span>
+                <span class="n">pctdistance</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">labeldistance</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">shadow</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">wedgeprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">'white'</span><span class="p">),</span> <span class="n">textprops</span><span class="o">=</span><span class="p">{</span><span class="s">'fontsize'</span><span class="p">:</span> <span class="mi">10</span><span class="p">},</span> <span class="n">startangle</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="p">.</span><span class="n">axis</span><span class="p">(</span><span class="s">'equal'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>그 중에 가장 난해했던 부분이 연한색부터 진한 색까지 discrete 하게 만드는 것이다. 몇 개의 종목만 보유하고 있다면 임의로 몇 개 설정할 수 있겠지만 많은 종목을 하나하나 적을 수 없는 노릇이다. 여러 구글링과 많은 고민 끝의 로직은 최소, 최대값을 normalize 하여 matplotlib.cm.get_cmap 에 해당 값을 넣어 각 종목별 색상을 정하는 것이다. 이의 코드는 아래와 같다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        firstNorm = matplotlib.colors.Normalize(vmin=firstMin, vmax=firstMax)
+
+        firstmap = matplotlib.cm.get_cmap(firstColor)
+        firstarr = []
+
+        for i in firstSection:
+            rgba = firstmap(firstNorm(i))
+            firstarr.append(rgba)
+</code></pre></div></div>
+
+<ul>
+  <li><em>종목별 평가 금액</em></li>
+</ul>
+
+<p>비중이 높은 종목을 우선순위로 하여 barchart 로 표현하였다. 오른쪽 부분으로 갈수록 수익률이 낮은 곳이다. 보면 볼수록 마음이 아픈 차트다. 주식 공부도 게을리 하지 말아야 겠다는 생각이 든다.</p>
+
+<p><img src="/assets/images/balchart_bar.jpg" title="차트" alt="chart" /><br /></p>
+
+<p>종목별 평가 금액 차트는 어렵지 않게 구현할 수 있다. 정렬 후 아래 코드를 적용한다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ax.bar(df_inputvalue1['종목명'].tolist(), list(map(int, df_inputvalue1['평가금액'].tolist())), align='center', alpha=0.5)
+</code></pre></div></div>
+
+<p>종목명들이 겹치는 현상은 종목이 많아서이다. 45도 정도로 rotation 하여 할 수도 있으나 이건 해결책이 아닌 듯하여 여기서 이대로 놔두기로 한다.</p>
+
+<h3 id="전략-검색">전략 검색</h3>
+
+<p>전략 리스트를 기준으로 종목을 검색하는 기능은 크레온 API 에서 이미 제공하고 있다. 물론 특정 조건 상세 기준으로의 검색은 별도로 개발해야 겠지만 아래 그림과 같이 많은 리스트를 제공하므로 원하는 적합한 리스트를 선택하여 종목을 도출할 수 있다.</p>
+
+<p><img src="/assets/images/stglist.jpg" title="차트" alt="chart" /><br /></p>
+
+<p>화면의 전략 리스트 가져오기를 클릭하면 위와 같이 리스트들을 받아올 수 있으며, 우측에 검색종목 수, 체크했던 검색 조건 그리고 검색 종목들을 나열하였다. 예시와 같이 중복으로 선택하였을 경우 모두 만족하는 검색 기능을 구현하였다. 이를 위해 아래와 같은 코드로 간단히 구현할 수 있다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flist = set(resultlist[0]).intersection(*resultlist)
+</code></pre></div></div>
+
+<p>또한, 검색된 종목을 더블 클릭하여 해당 종목의 차트를 바로 확인할 수 있게 아래와 같이 구현하였다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="n">row</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">tableWidget_3</span><span class="p">.</span><span class="n">currentIndex</span><span class="p">().</span><span class="n">row</span><span class="p">()</span>
+        <span class="n">column</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">tableWidget_3</span><span class="p">.</span><span class="n">currentIndex</span><span class="p">().</span><span class="n">column</span><span class="p">()</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">)</span>
+
+        <span class="n">item</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">tableWidget_3</span><span class="p">.</span><span class="n">item</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># 클릭한 row 의 종목명
+</span>        <span class="n">item_text</span> <span class="o">=</span> <span class="n">item</span><span class="p">.</span><span class="n">text</span><span class="p">()</span> <span class="c1"># 종목명
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">newWindow</span> <span class="o">=</span> <span class="n">MyWindow</span><span class="p">(</span><span class="n">item_text</span><span class="p">)</span> <span class="c1"># 차트 화면 불러오기
+</span></code></pre></div></div>
+
+<hr />
+
+<h2 id="5장-마무리">5장. 마무리</h2>
+
+<p>파이썬 학습을 위해 데이터 타입, matplotlib, pandas 등의 모듈에 대해 체계적으로 학습하려 했으나, 시간이 지나면 잊어버리고 후에 다시 보게 되어 제대로 해보자는 마음으로 본 프로젝트를 진행하였으며, 이를 통해 파이썬에 익숙해지려 노력했다. 2주 간의 구글링과 코딩, 그리고 디버깅을 통해 나름 파이썬이란 이런 것이구나라는 것을 알게 되었고 고민에 고민을 더한 결과 위와 같은 결과물이 나올 수 있게 된 것 같다. <br /></p>
+
+<p>아직 완벽하다 말할 수 없고 생각치 못한 버그가 있을 수 도 있다. 물론 이 글을 올리는 현 시점에서 중복 코드는 몇몇 존재하긴 하다. 여유가 있다면 소스 상세 분석 및 Refactoring 등을 통해 나은 소스를 구현하고 싶지만 또 다른 토이 프로젝트를 진행하고자 하는 욕구가 강해 여기까지 진행하기로 했다.<br /></p>
+
+<p>주로 검색했던 곳은 google, stackoverflow 등을 참조하였으며, 검색 자료를 참고하여 디버깅 및 적용하느라 소스 출처들을 제대로 메모하지 못했다. 본 글을 보시는 소스 주인님이 계신다면 이 글을 통해 먼저 감사하다는 말씀을 드리고 싶다. 이 글 또한 누군가에게 도움이 된다면 그것으로 충분히 만족할 수 있을 것이다.</p>
+:ET

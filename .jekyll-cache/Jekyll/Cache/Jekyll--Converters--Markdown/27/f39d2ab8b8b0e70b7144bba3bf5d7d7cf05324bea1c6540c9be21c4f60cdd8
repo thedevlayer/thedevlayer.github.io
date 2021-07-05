@@ -1,0 +1,162 @@
+I"�K<p>LCA 는 트리 노드에서 공통 조상을 찾는 로직이다. 로직 구성은 아래와 같다.</p>
+
+<ol>
+  <li>인접리스트 관계 매핑</li>
+  <li>BFS 를 이용한 Sparse Table 구성</li>
+  <li>LCA 로직 구현
+    <ul>
+      <li>레벨 맞추기</li>
+      <li>공통조상 찾기</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="예제">예제</h3>
+<ul>
+  <li>아래의 노드가 있을 때 1번부터 순서대로 지나갈 때의 비용을 구하라. 단, 각 간선의 비용은 1 이라 가정한다.</li>
+</ul>
+
+<p><img src="/assets/images/lca-examples.png" alt="lca-example" /></p>
+
+<blockquote>
+  <p>1 번부터 임을 감안하면 1을 루트로 하는 MST 임을 알 수 있다.
+a 에서 b 로 갈 경우, 공통조상은 반드시 거치므로 비용은 a 의 깊이 + b 의 깊이 - 2* 공통조상의 깊이이다.</p>
+</blockquote>
+
+<ul>
+  <li>input
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1 -- test case
+6 -- N
+3 1 -- 여기부터 N-1 개의 간선정보
+2 4
+3 5
+1 4
+4 6
+</code></pre></div>    </div>
+  </li>
+  <li>coding</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileInputStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.LinkedList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.StringTokenizer</span><span class="o">;</span>
+
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+
+	<span class="kd">static</span> <span class="nc">BufferedReader</span> <span class="n">br</span><span class="o">;</span>
+	<span class="kd">static</span> <span class="nc">StringTokenizer</span> <span class="n">st</span><span class="o">;</span>
+	<span class="kd">static</span> <span class="kt">int</span> <span class="no">N</span><span class="o">,</span> <span class="no">T</span><span class="o">;</span>
+	<span class="kd">static</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;[]</span> <span class="n">adjList</span><span class="o">;</span>
+	<span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">depth</span><span class="o">,</span><span class="n">visited</span><span class="o">;</span>
+	<span class="kd">static</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">parent</span><span class="o">;</span>
+	<span class="kd">static</span> <span class="kt">int</span> <span class="no">DEPTH_SIZE</span> <span class="o">=</span> <span class="mi">17</span><span class="o">;</span> <span class="c1">// 깊이 17 단계임을 고려함.</span>
+
+	<span class="kd">static</span> <span class="kt">void</span> <span class="nf">bfs</span><span class="o">(</span><span class="kt">int</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">LinkedList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LinkedList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;();</span>
+		<span class="n">queue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+		<span class="n">visited</span><span class="o">[</span><span class="n">s</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+		<span class="n">parent</span><span class="o">[</span><span class="n">s</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+		<span class="k">while</span><span class="o">(!</span><span class="n">queue</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+			<span class="kt">int</span> <span class="n">now</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">next</span> <span class="o">:</span> <span class="n">adjList</span><span class="o">[</span><span class="n">now</span><span class="o">])</span> <span class="o">{</span>
+				<span class="k">if</span><span class="o">(</span><span class="n">visited</span><span class="o">[</span><span class="n">next</span><span class="o">]</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="k">continue</span><span class="o">;</span>
+
+				<span class="n">depth</span><span class="o">[</span><span class="n">next</span><span class="o">]</span> <span class="o">=</span> <span class="n">depth</span><span class="o">[</span><span class="n">now</span><span class="o">]</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// 깊이를 부모의 깊이 + 1</span>
+				<span class="n">parent</span><span class="o">[</span><span class="n">next</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">now</span><span class="o">;</span> <span class="c1">// 각 부모 정보 저장</span>
+				<span class="n">visited</span><span class="o">[</span><span class="n">next</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+
+				<span class="n">queue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">next</span><span class="o">);</span> <span class="c1">// 다음 노드를 큐에 넣는다</span>
+			<span class="o">}</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+
+	<span class="c1">// 공통조상 찾기 로직</span>
+	<span class="kd">static</span> <span class="kt">int</span> <span class="nf">lca</span> <span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">depth</span><span class="o">[</span><span class="n">a</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">depth</span><span class="o">[</span><span class="n">b</span><span class="o">])</span> <span class="k">return</span> <span class="n">lca</span><span class="o">(</span><span class="n">b</span><span class="o">,</span><span class="n">a</span><span class="o">);</span> <span class="c1">// a 를 깊은것으로 한다.</span>
+
+		<span class="c1">// 깊이 맞추기 (아래서 위로 올라가면서..)</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="no">DEPTH_SIZE</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="k">if</span><span class="o">(((</span><span class="n">depth</span><span class="o">[</span><span class="n">a</span><span class="o">]</span> <span class="o">-</span> <span class="n">depth</span><span class="o">[</span><span class="n">b</span><span class="o">])</span> <span class="o">&amp;</span> <span class="o">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="o">))</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">)</span> <span class="n">a</span> <span class="o">=</span> <span class="n">parent</span><span class="o">[</span><span class="n">a</span><span class="o">][</span><span class="n">i</span><span class="o">];</span> <span class="c1">// 1 을 하나씩 옮겨가며 맞으면 a 업데이트</span>
+		<span class="o">}</span>
+
+		<span class="c1">// 이후 두 값이 같으면 종료</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="o">)</span> <span class="k">return</span> <span class="n">a</span><span class="o">;</span>
+
+		<span class="c1">// 공통 조상 찾기 (위에서 아래로 내려가면서..)</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="no">DEPTH_SIZE</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;=</span><span class="mi">0</span> <span class="o">;</span> <span class="n">i</span><span class="o">--)</span> <span class="o">{</span>
+			<span class="k">if</span><span class="o">(</span><span class="n">parent</span><span class="o">[</span><span class="n">a</span><span class="o">][</span><span class="n">i</span><span class="o">]</span> <span class="o">!=</span> <span class="n">parent</span><span class="o">[</span><span class="n">b</span><span class="o">][</span><span class="n">i</span><span class="o">])</span> <span class="o">{</span>
+				<span class="n">a</span> <span class="o">=</span> <span class="n">parent</span><span class="o">[</span><span class="n">a</span><span class="o">][</span><span class="n">i</span><span class="o">];</span>
+				<span class="n">b</span> <span class="o">=</span> <span class="n">parent</span><span class="o">[</span><span class="n">b</span><span class="o">][</span><span class="n">i</span><span class="o">];</span>
+			<span class="o">}</span>
+		<span class="o">}</span>
+		<span class="k">return</span> <span class="n">parent</span><span class="o">[</span><span class="n">a</span><span class="o">][</span><span class="mi">0</span><span class="o">];</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+
+		<span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">InputStreamReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"C:\\sample_input.txt"</span><span class="o">)));</span>
+		<span class="no">T</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
+
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">test_case</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">test_case</span> <span class="o">&lt;=</span> <span class="no">T</span><span class="o">;</span> <span class="n">test_case</span> <span class="o">++)</span> <span class="o">{</span>
+
+			<span class="no">N</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
+			<span class="n">adjList</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">[</span><span class="no">N</span><span class="o">+</span><span class="mi">1</span><span class="o">];</span>
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="no">N</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+				<span class="n">adjList</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;();</span>
+			<span class="o">}</span>
+
+			<span class="c1">// N-1 개의 간선 정보가 주어진다.</span>
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="no">N</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+				<span class="n">st</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringTokenizer</span><span class="o">(</span><span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
+				<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">nextToken</span><span class="o">());</span>
+				<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">nextToken</span><span class="o">());</span>
+				<span class="n">adjList</span><span class="o">[</span><span class="n">a</span><span class="o">].</span><span class="na">add</span><span class="o">(</span><span class="n">b</span><span class="o">);</span> <span class="c1">// 양방향이므로 두개 입력</span>
+				<span class="n">adjList</span><span class="o">[</span><span class="n">b</span><span class="o">].</span><span class="na">add</span><span class="o">(</span><span class="n">a</span><span class="o">);</span> <span class="c1">// 양방향이므로 두개 입력</span>
+			<span class="o">}</span>
+
+
+
+			<span class="c1">// BFS 를 이용하여 루트를 기준으로 각 깊이와 sparsetable 초기화한다.</span>
+			<span class="n">visited</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="no">N</span><span class="o">+</span><span class="mi">1</span><span class="o">];</span>
+			<span class="n">depth</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="no">N</span><span class="o">+</span><span class="mi">1</span><span class="o">];</span>
+			<span class="n">parent</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="no">N</span><span class="o">+</span><span class="mi">1</span><span class="o">][</span><span class="no">DEPTH_SIZE</span><span class="o">+</span><span class="mi">1</span><span class="o">];</span> <span class="c1">// parent[i][j] : i 노드의 2^j 번째 부모</span>
+
+
+			<span class="n">bfs</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+
+			<span class="c1">// 부모 이상의 spase table 을 구성한다. 바로 위부터 진행하므로 j = 1 부터..</span>
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="no">DEPTH_SIZE</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+				<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="no">N</span> <span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+					<span class="n">parent</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">parent</span><span class="o">[</span><span class="n">parent</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">]][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">];</span> <span class="c1">//** 중요</span>
+				<span class="o">}</span>
+			<span class="o">}</span>
+
+			<span class="kt">long</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">N</span> <span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+				<span class="n">ans</span> <span class="o">+=</span> <span class="o">(</span><span class="n">depth</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="n">depth</span><span class="o">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">depth</span><span class="o">[</span><span class="n">lca</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">)]);</span>
+			<span class="o">}</span>
+
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"#"</span><span class="o">+</span><span class="n">test_case</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">ans</span><span class="o">);</span>
+
+
+
+		<span class="o">}</span>
+	<span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>정답
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#1 14
+</code></pre></div>    </div>
+  </li>
+</ul>
+:ET

@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Homines, dum docent, discunt &middot; Day by day, in Everyway, I am getting better and better
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/custom.css">
+  <link rel="stylesheet" href="/public/css/font.css">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="https://dcjamespark.github.io/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109898110-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-109898110-1', 'auto');
+</script>
+
+  
+
+  <script src="/js/vue.min.js"></script>
+  <script src="/js/axios.min.js"></script>
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>One a day</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="https://dcjamespark.github.io/">Home</a>
+
+    
+
+    <!-- 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/about/">About</a>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     -->
+<!-- 
+    <a class="sidebar-nav-item" href="https://github.com/dcjamespark/dcjamespark.github.io">GitHub project</a> -->
+  </nav>
+  <div>
+    <div class="sidebar-nav-item">Category</div>
+    <nav class="content-ul">
+      
+
+
+      
+      <a href="/category/#01_Algorithm"
+         class="sidebar-nav-item pl-3rem">
+                            <span class="name">
+                                01_Algorithm
+                            </span>
+        <span class="badge">3</span>
+      </a>
+      
+      <a href="/category/#02_AI"
+         class="sidebar-nav-item pl-3rem">
+                            <span class="name">
+                                02_AI
+                            </span>
+        <span class="badge">1</span>
+      </a>
+      
+      <a href="/category/#03_ToyProject"
+         class="sidebar-nav-item pl-3rem">
+                            <span class="name">
+                                03_ToyProject
+                            </span>
+        <span class="badge">2</span>
+      </a>
+      
+    </nav>
+  </div>
+  <div>
+    <div class="sidebar-nav-item">Tags</div>
+    <div class="tags-cloud">
+      <div>
+        
+        
+        
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+
+        
+        
+        <a href="/tag/#tensorflow" style="font-size: 9pt; color: #555;">tensorflow</a>
+        
+        
+        
+        
+        
+        
+
+        
+        
+        <a href="/tag/#주식" style="font-size: 18pt; color: #eee;">주식</a>
+        
+        
+        
+        
+        
+        
+
+        
+        
+        <a href="/tag/#Python" style="font-size: 9pt; color: #555;">Python</a>
+        
+        
+        
+        
+        
+        
+
+        
+        
+        <a href="/tag/#PyQt5" style="font-size: 9pt; color: #555;">PyQt5</a>
+        
+        
+        
+        
+        
+        
+
+        
+        
+        <a href="/tag/#LCA" style="font-size: 9pt; color: #555;">LCA</a>
+        
+        
+        
+        
+        
+        
+
+        
+        
+        <a href="/tag/#SparseTable" style="font-size: 9pt; color: #555;">SparseTable</a>
+        
+        
+        
+        
+        
+        
+
+        
+        
+        <a href="/tag/#MST" style="font-size: 9pt; color: #555;">MST</a>
+        
+        
+        
+        
+        
+        
+
+        
+        
+        <a href="/tag/#BFS" style="font-size: 9pt; color: #555;">BFS</a>
+        
+        
+        
+        
+        
+        
+
+        
+        
+        <a href="/tag/#FailureFunction" style="font-size: 9pt; color: #555;">FailureFunction</a>
+        
+        
+        
+        
+        
+        
+
+        
+        
+        <a href="/tag/#Priority Queue" style="font-size: 9pt; color: #555;">Priority Queue</a>
+        
+        
+        
+        
+        
+        
+
+        
+        
+        <a href="/tag/#Django" style="font-size: 9pt; color: #555;">Django</a>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  <!-- <a class="sidebar-nav-item" href="https://github.com/dcjamespark/dcjamespark.github.io">GitHub project</a> -->
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a class="sidebar-nav-item" href="/about/">About</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+  
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2021. All rights reserved.
+    </p>
+  </div>
+</div>
+
+<script>
+  window.addEventListener('hashchange', function(){
+    location.reload();
+  });
+</script>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="https://dcjamespark.github.io/" title="Home">Homines, dum docent, discunt</a>
+            <small>Day by day, in Everyway, I am getting better and better</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/02_ai/2019/12/31/simpleneuralnetwork/">
+        Simple Neural Network
+      </a>
+    </h1>
+
+    <span class="post-date">31 Dec 2019</span>
+
+    <h4 id="this-is-from-codelab-where-located-in-httpscodelabsdevelopersgooglecomcodelabsneural-tensorflow-jsindexhtmlindex2findex0">This is from codelab where located in <a href="https://codelabs.developers.google.com/codelabs/neural-tensorflow-js/index.html?index=..%2F..index#0">https://codelabs.developers.google.com/codelabs/neural-tensorflow-js/index.html?index=..%2F..index#0</a></h4>
+
+<p><img src="/assets/images/neuralsample.jpeg" /></p>
+
+<h4 id="we-are-going-to-build-a-simple-neural-network-that-can-classify-irises-into-three-classes-using-tensorflowjs">We are going to build a simple neural network that can classify irises into three classes using TensorFlow.js:</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- Setosa
+- Virginica 
+- Versicolor
+</code></pre></div></div>
+
+<h4 id="getting-set-up">Getting set up</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- git clone https://github.com/aayusharora/TensorflowJS-NeuralNet.git
+- Running the project : In cmd, npm install
+- Surely, Nodejs should be installed before
+- Generate training and testing data from iris node 
+- Source code : generateTest.js
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">144</span><span class="p">;</span>
+<span class="n">let</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">let</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">let</span> <span class="n">testArray</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="n">let</span> <span class="n">trainArray</span> <span class="o">=</span> <span class="p">[];</span>
+
+<span class="n">const</span> <span class="n">fs</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s">'fs'</span><span class="p">);</span> 
+<span class="n">const</span> <span class="n">data</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s">'./iris.json'</span><span class="p">);</span>
+
+<span class="n">function</span> <span class="n">formDataset</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="p">{</span>
+<span class="o">//</span> <span class="n">Creating</span> <span class="n">training</span> <span class="ow">and</span> <span class="n">testing</span> <span class="n">dataset</span>
+<span class="o">//</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">let</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">Math</span><span class="p">.</span><span class="nb">round</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">k</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="n">floor</span><span class="p">(</span><span class="n">Math</span><span class="p">.</span><span class="n">random</span><span class="p">()</span> <span class="o">*</span> <span class="n">Math</span><span class="p">.</span><span class="nb">round</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">testArray</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">]);</span>
+    <span class="n">data</span><span class="p">.</span><span class="n">splice</span><span class="p">(</span><span class="n">index</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">;</span> 
+    <span class="n">trainArray</span> <span class="o">=</span> <span class="n">data</span><span class="p">;</span>
+  <span class="p">}</span>  
+
+  <span class="n">fs</span><span class="p">.</span><span class="n">writeFile</span><span class="p">(</span><span class="s">'training.json'</span><span class="p">,</span> <span class="n">JSON</span><span class="p">.</span><span class="n">stringify</span><span class="p">(</span><span class="n">trainArray</span><span class="p">),</span> <span class="n">function</span><span class="p">(){});</span>
+  <span class="n">fs</span><span class="p">.</span><span class="n">writeFile</span><span class="p">(</span><span class="s">'testing.json'</span><span class="p">,</span> <span class="n">JSON</span><span class="p">.</span><span class="n">stringify</span><span class="p">(</span><span class="n">testArray</span><span class="p">),</span> <span class="n">function</span><span class="p">(){});</span>
+<span class="p">}</span>
+
+<span class="n">formDataset</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+
+</code></pre></div></div>
+
+<h4 id="building-neural-network-model">Building Neural Network Model</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> - Refer to this git source
+	- git clone https://github.com/aayusharora/TensorflowJS-NeuralNet.git
+- index.js
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">const</span> <span class="n">tf</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s">'@tensorflow/tfjs'</span><span class="p">);</span>
+<span class="n">const</span> <span class="n">iris</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s">'./training.json'</span><span class="p">);</span>
+<span class="n">const</span> <span class="n">irisTesting</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s">'./testing.json'</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">Mapping</span> <span class="n">the</span> <span class="n">trainingdata</span>
+<span class="n">const</span> <span class="n">trainingData</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">tensor2d</span><span class="p">(</span><span class="n">iris</span><span class="p">.</span><span class="nb">map</span><span class="p">(</span><span class="n">item</span><span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="n">item</span><span class="p">.</span><span class="n">sepal_length</span><span class="p">,</span> <span class="n">item</span><span class="p">.</span><span class="n">sepal_width</span><span class="p">,</span> <span class="n">item</span><span class="p">.</span><span class="n">petal_length</span><span class="p">,</span> <span class="n">item</span><span class="p">.</span><span class="n">petal_width</span>
+<span class="p">]</span>
+<span class="p">),[</span><span class="mi">130</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+
+<span class="o">//</span> <span class="n">Mapping</span> <span class="n">the</span> <span class="n">testing</span> <span class="n">data</span>
+<span class="n">const</span> <span class="n">testingData</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">tensor2d</span><span class="p">(</span><span class="n">irisTesting</span><span class="p">.</span><span class="nb">map</span><span class="p">(</span><span class="n">item</span><span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="n">item</span><span class="p">.</span><span class="n">sepal_length</span><span class="p">,</span> <span class="n">item</span><span class="p">.</span><span class="n">sepal_width</span><span class="p">,</span> <span class="n">item</span><span class="p">.</span><span class="n">petal_length</span><span class="p">,</span> <span class="n">item</span><span class="p">.</span><span class="n">petal_width</span>
+<span class="p">]</span>
+<span class="p">),[</span><span class="mi">14</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+
+<span class="o">//</span> <span class="n">creating</span> <span class="n">model</span>
+<span class="n">const</span> <span class="n">outputData</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">tensor2d</span><span class="p">(</span><span class="n">iris</span><span class="p">.</span><span class="nb">map</span><span class="p">(</span><span class="n">item</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="n">item</span><span class="p">.</span><span class="n">species</span> <span class="o">===</span> <span class="s">'setosa'</span> <span class="err">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">item</span><span class="p">.</span><span class="n">species</span> <span class="o">===</span> <span class="s">'virginica'</span> <span class="err">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">item</span><span class="p">.</span><span class="n">species</span> <span class="o">===</span> <span class="s">'versicolor'</span> <span class="err">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="mi">0</span>
+<span class="p">]),</span> <span class="p">[</span><span class="mi">130</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+
+<span class="o">//</span> <span class="n">Creating</span> <span class="n">Model</span>
+<span class="n">const</span> <span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">sequential</span><span class="p">();</span>
+
+<span class="n">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">dense</span><span class="p">(</span>
+    <span class="p">{</span>   <span class="n">inputShape</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> 
+        <span class="n">activation</span><span class="p">:</span> <span class="s">'sigmoid'</span><span class="p">,</span> 
+        <span class="n">units</span><span class="p">:</span> <span class="mi">10</span>
+    <span class="p">}</span>
+<span class="p">));</span>
+
+<span class="n">model</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">dense</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="n">inputShape</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> 
+        <span class="n">units</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> 
+        <span class="n">activation</span><span class="p">:</span> <span class="s">'softmax'</span>
+    <span class="p">}</span>
+<span class="p">));</span>
+
+<span class="n">model</span><span class="p">.</span><span class="n">summary</span><span class="p">();</span>
+
+<span class="o">//</span> <span class="n">compiling</span> <span class="n">model</span>
+<span class="n">model</span><span class="p">.</span><span class="nb">compile</span><span class="p">({</span>
+    <span class="n">loss</span><span class="p">:</span> <span class="s">"categoricalCrossentropy"</span><span class="p">,</span>
+    <span class="n">optimizer</span><span class="p">:</span> <span class="n">tf</span><span class="p">.</span><span class="n">train</span><span class="p">.</span><span class="n">adam</span><span class="p">()</span>
+<span class="p">})</span>
+
+<span class="k">async</span> <span class="n">function</span> <span class="n">train_data</span><span class="p">(){</span>
+    <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">'......Loss History.......'</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">let</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">40</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+     <span class="n">let</span> <span class="n">res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">model</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">trainingData</span><span class="p">,</span> <span class="n">outputData</span><span class="p">,</span> <span class="p">{</span><span class="n">epochs</span><span class="p">:</span> <span class="mi">40</span><span class="p">});</span>
+     <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="sb">`Iteration ${i}: ${res.history.loss[0]}`</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="k">async</span> <span class="n">function</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">await</span> <span class="n">train_data</span><span class="p">();</span>
+    <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s">'....Model Prediction .....'</span><span class="p">)</span>
+    <span class="n">model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">testingData</span><span class="p">).</span><span class="k">print</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="n">main</span><span class="p">();</span>
+
+</code></pre></div></div>
+
+<h4 id="run-indexjs">Run index.js</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="n">tensorflow36gpu</span><span class="p">)</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">samsung1</span>\<span class="n">Desktop</span>\<span class="n">TensorflowJS</span><span class="o">-</span><span class="n">NeuralNet</span><span class="o">-</span><span class="n">master</span>\<span class="n">TensorflowJS</span><span class="o">-</span><span class="n">NeuralNet</span><span class="o">-</span><span class="n">master</span>\<span class="n">solution</span><span class="o">&gt;</span><span class="n">node</span> <span class="n">index</span><span class="p">.</span><span class="n">js</span>
+
+<span class="o">============================</span>
+
+<span class="n">Hi</span> <span class="n">there</span> <span class="err">👋</span><span class="p">.</span> <span class="n">Looks</span> <span class="n">like</span> <span class="n">you</span> <span class="n">are</span> <span class="n">running</span> <span class="n">TensorFlow</span><span class="p">.</span><span class="n">js</span> <span class="ow">in</span> <span class="n">Node</span><span class="p">.</span><span class="n">js</span><span class="p">.</span> <span class="n">To</span> <span class="n">speed</span> <span class="n">things</span> <span class="n">up</span> <span class="n">dramatically</span><span class="p">,</span> <span class="n">install</span> <span class="n">our</span> <span class="n">node</span> <span class="n">backend</span><span class="p">,</span> <span class="n">which</span> <span class="n">binds</span> <span class="n">to</span> <span class="n">TensorFlow</span> <span class="n">C</span><span class="o">++</span><span class="p">,</span> <span class="n">by</span> <span class="n">running</span> <span class="n">npm</span> <span class="n">i</span> <span class="o">@</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">tfjs</span><span class="o">-</span><span class="n">node</span><span class="p">,</span> <span class="ow">or</span> <span class="n">npm</span> <span class="n">i</span> <span class="o">@</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">tfjs</span><span class="o">-</span><span class="n">node</span><span class="o">-</span><span class="n">gpu</span> <span class="k">if</span> <span class="n">you</span> <span class="n">have</span> <span class="n">CUDA</span><span class="p">.</span> <span class="n">Then</span> <span class="n">call</span> <span class="n">require</span><span class="p">(</span><span class="s">'@tensorflow/tfjs-node'</span><span class="p">);</span> <span class="p">(</span><span class="o">-</span><span class="n">gpu</span> <span class="n">suffix</span> <span class="k">for</span> <span class="n">CUDA</span><span class="p">)</span> <span class="n">at</span> <span class="n">the</span> <span class="n">start</span> <span class="n">of</span> <span class="n">your</span> <span class="n">program</span><span class="p">.</span> <span class="n">Visit</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">tensorflow</span><span class="o">/</span><span class="n">tfjs</span><span class="o">-</span><span class="n">node</span> <span class="k">for</span> <span class="n">more</span> <span class="n">details</span><span class="p">.</span>
+
+<span class="o">============================</span>
+
+
+<span class="n">_________________________________________________________________</span>
+
+<span class="n">Layer</span> <span class="p">(</span><span class="nb">type</span><span class="p">)</span>                 <span class="n">Output</span> <span class="n">shape</span>              <span class="n">Param</span> <span class="c1">#
+</span>
+<span class="o">=================================================================</span>
+
+<span class="n">dense_Dense1</span> <span class="p">(</span><span class="n">Dense</span><span class="p">)</span>         <span class="p">[</span><span class="n">null</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>                 <span class="mi">50</span>
+
+<span class="n">_________________________________________________________________</span>
+
+<span class="n">dense_Dense2</span> <span class="p">(</span><span class="n">Dense</span><span class="p">)</span>         <span class="p">[</span><span class="n">null</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>                  <span class="mi">33</span>
+
+<span class="o">=================================================================</span>
+
+<span class="n">Total</span> <span class="n">params</span><span class="p">:</span> <span class="mi">83</span>
+
+<span class="n">Trainable</span> <span class="n">params</span><span class="p">:</span> <span class="mi">83</span>
+
+<span class="n">Non</span><span class="o">-</span><span class="n">trainable</span> <span class="n">params</span><span class="p">:</span> <span class="mi">0</span>
+
+<span class="n">_________________________________________________________________</span>
+
+<span class="p">......</span><span class="n">Loss</span> <span class="n">History</span><span class="p">.......</span>
+
+<span class="n">Iteration</span> <span class="mi">0</span><span class="p">:</span> <span class="mf">1.1662038564682007</span>
+
+<span class="n">Iteration</span> <span class="mi">1</span><span class="p">:</span> <span class="mf">1.0506356917894804</span>
+
+<span class="n">Iteration</span> <span class="mi">2</span><span class="p">:</span> <span class="mf">0.8976518456752484</span>
+
+<span class="n">Iteration</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">0.7571693823887752</span>
+
+<span class="n">Iteration</span> <span class="mi">4</span><span class="p">:</span> <span class="mf">0.6467501438581027</span>
+
+<span class="n">Iteration</span> <span class="mi">5</span><span class="p">:</span> <span class="mf">0.5714254358640084</span>
+
+<span class="n">Iteration</span> <span class="mi">6</span><span class="p">:</span> <span class="mf">0.5055675928409283</span>
+
+<span class="n">Iteration</span> <span class="mi">7</span><span class="p">:</span> <span class="mf">0.46349796515244707</span>
+
+<span class="n">Iteration</span> <span class="mi">8</span><span class="p">:</span> <span class="mf">0.43163500611598676</span>
+
+<span class="n">Iteration</span> <span class="mi">9</span><span class="p">:</span> <span class="mf">0.3972092811877911</span>
+
+<span class="n">Iteration</span> <span class="mi">10</span><span class="p">:</span> <span class="mf">0.3674122438980983</span>
+
+<span class="n">Iteration</span> <span class="mi">11</span><span class="p">:</span> <span class="mf">0.3369893605892475</span>
+
+<span class="n">Iteration</span> <span class="mi">12</span><span class="p">:</span> <span class="mf">0.30642905819874544</span>
+
+<span class="n">Iteration</span> <span class="mi">13</span><span class="p">:</span> <span class="mf">0.27981403149091283</span>
+
+<span class="n">Iteration</span> <span class="mi">14</span><span class="p">:</span> <span class="mf">0.25635493993759156</span>
+
+<span class="n">Iteration</span> <span class="mi">15</span><span class="p">:</span> <span class="mf">0.2361850876074571</span>
+
+<span class="n">Iteration</span> <span class="mi">16</span><span class="p">:</span> <span class="mf">0.21609901533677028</span>
+
+<span class="n">Iteration</span> <span class="mi">17</span><span class="p">:</span> <span class="mf">0.20003663393167348</span>
+
+<span class="n">Iteration</span> <span class="mi">18</span><span class="p">:</span> <span class="mf">0.1843679586282143</span>
+
+<span class="n">Iteration</span> <span class="mi">19</span><span class="p">:</span> <span class="mf">0.17246765941381453</span>
+
+<span class="n">Iteration</span> <span class="mi">20</span><span class="p">:</span> <span class="mf">0.1598011803168517</span>
+
+<span class="n">Iteration</span> <span class="mi">21</span><span class="p">:</span> <span class="mf">0.15122175308374258</span>
+
+<span class="n">Iteration</span> <span class="mi">22</span><span class="p">:</span> <span class="mf">0.14070233599497722</span>
+
+<span class="n">Iteration</span> <span class="mi">23</span><span class="p">:</span> <span class="mf">0.13351650604834922</span>
+
+<span class="n">Iteration</span> <span class="mi">24</span><span class="p">:</span> <span class="mf">0.12579153592769915</span>
+
+<span class="n">Iteration</span> <span class="mi">25</span><span class="p">:</span> <span class="mf">0.11973627645235796</span>
+
+<span class="n">Iteration</span> <span class="mi">26</span><span class="p">:</span> <span class="mf">0.11630492943983811</span>
+
+<span class="n">Iteration</span> <span class="mi">27</span><span class="p">:</span> <span class="mf">0.10865777432918548</span>
+
+<span class="n">Iteration</span> <span class="mi">28</span><span class="p">:</span> <span class="mf">0.10432640784061872</span>
+
+<span class="n">Iteration</span> <span class="mi">29</span><span class="p">:</span> <span class="mf">0.10155008463905407</span>
+
+<span class="n">Iteration</span> <span class="mi">30</span><span class="p">:</span> <span class="mf">0.09651463008843936</span>
+
+<span class="n">Iteration</span> <span class="mi">31</span><span class="p">:</span> <span class="mf">0.09530227688642648</span>
+
+<span class="n">Iteration</span> <span class="mi">32</span><span class="p">:</span> <span class="mf">0.08995573016313406</span>
+
+<span class="n">Iteration</span> <span class="mi">33</span><span class="p">:</span> <span class="mf">0.0872224965920815</span>
+
+<span class="n">Iteration</span> <span class="mi">34</span><span class="p">:</span> <span class="mf">0.08483409400169666</span>
+
+<span class="n">Iteration</span> <span class="mi">35</span><span class="p">:</span> <span class="mf">0.08211586575668592</span>
+
+<span class="n">Iteration</span> <span class="mi">36</span><span class="p">:</span> <span class="mf">0.07996474094688892</span>
+
+<span class="n">Iteration</span> <span class="mi">37</span><span class="p">:</span> <span class="mf">0.07782226459911236</span>
+
+<span class="n">Iteration</span> <span class="mi">38</span><span class="p">:</span> <span class="mf">0.07606427617944204</span>
+
+<span class="n">Iteration</span> <span class="mi">39</span><span class="p">:</span> <span class="mf">0.07418118130702239</span>
+
+<span class="p">....</span><span class="n">Model</span> <span class="n">Prediction</span> <span class="p">.....</span>
+
+<span class="n">Tensor</span>
+
+    <span class="p">[[</span><span class="mf">0.0148891</span><span class="p">,</span> <span class="mf">0.0020564</span><span class="p">,</span> <span class="mf">0.9830545</span><span class="p">],</span>
+
+     <span class="p">[</span><span class="mf">0.9934919</span><span class="p">,</span> <span class="mf">1e-7</span>     <span class="p">,</span> <span class="mf">0.0065079</span><span class="p">],</span>
+
+     <span class="p">[</span><span class="mf">0.0003181</span><span class="p">,</span> <span class="mf">0.4368047</span><span class="p">,</span> <span class="mf">0.5628772</span><span class="p">],</span>
+
+     <span class="p">[</span><span class="mf">0.9943109</span><span class="p">,</span> <span class="mf">1e-7</span>     <span class="p">,</span> <span class="mf">0.005689</span> <span class="p">],</span>
+
+     <span class="p">[</span><span class="mf">0.994063</span> <span class="p">,</span> <span class="mf">1e-7</span>     <span class="p">,</span> <span class="mf">0.0059368</span><span class="p">],</span>
+
+     <span class="p">[</span><span class="mf">0.9938089</span><span class="p">,</span> <span class="mf">1e-7</span>     <span class="p">,</span> <span class="mf">0.006191</span> <span class="p">],</span>
+
+     <span class="p">[</span><span class="mf">0.0000029</span><span class="p">,</span> <span class="mf">0.9713891</span><span class="p">,</span> <span class="mf">0.0286081</span><span class="p">],</span>
+
+     <span class="p">[</span><span class="mf">0.9946841</span><span class="p">,</span> <span class="mf">1e-7</span>     <span class="p">,</span> <span class="mf">0.0053159</span><span class="p">],</span>
+
+     <span class="p">[</span><span class="mf">0.00013</span>  <span class="p">,</span> <span class="mf">0.6348923</span><span class="p">,</span> <span class="mf">0.3649777</span><span class="p">],</span>
+
+     <span class="p">[</span><span class="mf">0.0048211</span><span class="p">,</span> <span class="mf">0.0106864</span><span class="p">,</span> <span class="mf">0.9844925</span><span class="p">],</span>
+
+     <span class="p">[</span><span class="mf">0.0051933</span><span class="p">,</span> <span class="mf">0.0093848</span><span class="p">,</span> <span class="mf">0.9854218</span><span class="p">],</span>
+
+     <span class="p">[</span><span class="mf">0.0035861</span><span class="p">,</span> <span class="mf">0.0175166</span><span class="p">,</span> <span class="mf">0.9788972</span><span class="p">],</span>
+
+     <span class="p">[</span><span class="mf">0.0039866</span><span class="p">,</span> <span class="mf">0.0160286</span><span class="p">,</span> <span class="mf">0.9799848</span><span class="p">],</span>
+
+     <span class="p">[</span><span class="mf">0.9924375</span><span class="p">,</span> <span class="mf">1e-7</span>     <span class="p">,</span> <span class="mf">0.0075622</span><span class="p">]]</span>
+
+</code></pre></div></div>
+
+<blockquote>
+  <p>[Appendix: Simple Neural Network using TensorFlow.js from <a href="https://codelabs.developers.google.com/codelabs/neural-tensorflow-js/index.html?index=..%2F..index#0">https://codelabs.developers.google.com/codelabs/neural-tensorflow-js/index.html?index=..%2F..index#0</a></p>
+</blockquote>
+
+<ul>
+  <li>coding</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.PriorityQueue</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">Student</span> <span class="kd">implements</span> <span class="nc">Comparable</span><span class="o">&lt;</span><span class="nc">Student</span><span class="o">&gt;{</span>
+	<span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+	<span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+	
+	<span class="kd">public</span> <span class="nf">Student</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="nc">Student</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+		<span class="c1">// age 가 같을 경우 name 첫번째 문자열 기준으로 내림차순</span>
+		<span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">==</span> <span class="n">o</span><span class="o">.</span><span class="na">age</span><span class="o">)</span> <span class="k">return</span> <span class="n">o</span><span class="o">.</span><span class="na">toString</span><span class="o">().</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">-</span> <span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">.</span><span class="na">toString</span><span class="o">().</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>  
+		<span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">-</span> <span class="n">o</span><span class="o">.</span><span class="na">age</span><span class="o">;</span> <span class="c1">// age 로 오름차순</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Solution</span><span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		
+		<span class="nc">PriorityQueue</span><span class="o">&lt;</span><span class="nc">Student</span><span class="o">&gt;</span> <span class="n">pq</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PriorityQueue</span><span class="o">&lt;</span><span class="nc">Student</span><span class="o">&gt;();</span>
+		
+		<span class="n">pq</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Student</span><span class="o">(</span><span class="s">"Park"</span><span class="o">,</span> <span class="mi">23</span><span class="o">));</span>
+		<span class="n">pq</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Student</span><span class="o">(</span><span class="s">"Kim"</span><span class="o">,</span> <span class="mi">12</span><span class="o">));</span>
+		<span class="n">pq</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Student</span><span class="o">(</span><span class="s">"Ace"</span><span class="o">,</span> <span class="mi">66</span><span class="o">));</span>
+		<span class="n">pq</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Student</span><span class="o">(</span><span class="s">"Lee"</span><span class="o">,</span> <span class="mi">45</span><span class="o">));</span>
+		<span class="n">pq</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Student</span><span class="o">(</span><span class="s">"Hong"</span><span class="o">,</span> <span class="mi">44</span><span class="o">));</span>
+		<span class="n">pq</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Student</span><span class="o">(</span><span class="s">"Park"</span><span class="o">,</span> <span class="mi">66</span><span class="o">));</span>
+		<span class="n">pq</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Student</span><span class="o">(</span><span class="s">"Choi"</span><span class="o">,</span> <span class="mi">66</span><span class="o">));</span>
+		
+		<span class="k">while</span><span class="o">(!</span><span class="n">pq</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+			<span class="nc">Student</span> <span class="n">st</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">age</span> <span class="o">+</span> <span class="s">"\t"</span><span class="o">+</span> <span class="n">st</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
+		<span class="o">}</span>
+ 
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>출력값</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>12	Kim
+23	Park
+44	Hong
+45	Lee
+66	Ace
+66	Park
+66	Choi
+</code></pre></div></div>
+
+  </div>
+  
+</div>
+<div class="pagination">
+  
+  <span class="pagination-item older">Older</span>
+  
+  
+  
+  <a class="pagination-item newer" href="https://dcjamespark.github.io/">Newer</a>
+  
+  
+</div>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

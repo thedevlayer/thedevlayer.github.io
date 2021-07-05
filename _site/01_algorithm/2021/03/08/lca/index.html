@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      LCA (Low Common Ancestor) &middot; Homines, dum docent, discunt
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/custom.css">
+  <link rel="stylesheet" href="/public/css/font.css">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="https://dcjamespark.github.io/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109898110-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-109898110-1', 'auto');
+</script>
+
+  
+
+  <script src="/js/vue.min.js"></script>
+  <script src="/js/axios.min.js"></script>
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>One a day</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="https://dcjamespark.github.io/">Home</a>
+
+    
+
+    <!-- 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/about/">About</a>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     -->
+<!-- 
+    <a class="sidebar-nav-item" href="https://github.com/dcjamespark/dcjamespark.github.io">GitHub project</a> -->
+  </nav>
+  <div>
+    <div class="sidebar-nav-item">Category</div>
+    <nav class="content-ul">
+      
+
+
+      
+      <a href="/category/#01_Algorithm"
+         class="sidebar-nav-item pl-3rem">
+                            <span class="name">
+                                01_Algorithm
+                            </span>
+        <span class="badge">3</span>
+      </a>
+      
+      <a href="/category/#02_AI"
+         class="sidebar-nav-item pl-3rem">
+                            <span class="name">
+                                02_AI
+                            </span>
+        <span class="badge">1</span>
+      </a>
+      
+      <a href="/category/#03_ToyProject"
+         class="sidebar-nav-item pl-3rem">
+                            <span class="name">
+                                03_ToyProject
+                            </span>
+        <span class="badge">2</span>
+      </a>
+      
+    </nav>
+  </div>
+  <div>
+    <div class="sidebar-nav-item">Tags</div>
+    <div class="tags-cloud">
+      <div>
+        
+        
+        
+        
+
+        
+
+        
+        
+        
+        
+        
+        
+
+        
+        
+        <a href="/tag/#tensorflow" style="font-size: 9pt; color: #555;">tensorflow</a>
+        
+        
+        
+        
+        
+        
+
+        
+        
+        <a href="/tag/#주식" style="font-size: 18pt; color: #eee;">주식</a>
+        
+        
+        
+        
+        
+        
+
+        
+        
+        <a href="/tag/#Python" style="font-size: 9pt; color: #555;">Python</a>
+        
+        
+        
+        
+        
+        
+
+        
+        
+        <a href="/tag/#PyQt5" style="font-size: 9pt; color: #555;">PyQt5</a>
+        
+        
+        
+        
+        
+        
+
+        
+        
+        <a href="/tag/#LCA" style="font-size: 9pt; color: #555;">LCA</a>
+        
+        
+        
+        
+        
+        
+
+        
+        
+        <a href="/tag/#SparseTable" style="font-size: 9pt; color: #555;">SparseTable</a>
+        
+        
+        
+        
+        
+        
+
+        
+        
+        <a href="/tag/#MST" style="font-size: 9pt; color: #555;">MST</a>
+        
+        
+        
+        
+        
+        
+
+        
+        
+        <a href="/tag/#BFS" style="font-size: 9pt; color: #555;">BFS</a>
+        
+        
+        
+        
+        
+        
+
+        
+        
+        <a href="/tag/#FailureFunction" style="font-size: 9pt; color: #555;">FailureFunction</a>
+        
+        
+        
+        
+        
+        
+
+        
+        
+        <a href="/tag/#Priority Queue" style="font-size: 9pt; color: #555;">Priority Queue</a>
+        
+        
+        
+        
+        
+        
+
+        
+        
+        <a href="/tag/#Django" style="font-size: 9pt; color: #555;">Django</a>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  <!-- <a class="sidebar-nav-item" href="https://github.com/dcjamespark/dcjamespark.github.io">GitHub project</a> -->
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <a class="sidebar-nav-item" href="/about/">About</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+  
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2021. All rights reserved.
+    </p>
+  </div>
+</div>
+
+<script>
+  window.addEventListener('hashchange', function(){
+    location.reload();
+  });
+</script>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="https://dcjamespark.github.io/" title="Home">Homines, dum docent, discunt</a>
+            <small>Day by day, in Everyway, I am getting better and better</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">LCA (Low Common Ancestor)</h1>
+  <span class="post-date">08 Mar 2021</span>
+  <p>LCA 는 트리 노드에서 공통 조상을 찾는 로직이다. 로직 구성은 아래와 같다.</p>
+
+<ol>
+  <li>인접리스트 관계 매핑</li>
+  <li>BFS 를 이용한 Sparse Table 구성</li>
+  <li>LCA 로직 구현
+    <ul>
+      <li>레벨 맞추기</li>
+      <li>공통조상 찾기</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="예제">예제</h3>
+<ul>
+  <li>아래의 노드가 있을 때 1번부터 순서대로 지나갈 때의 비용을 구하라. 단, 각 간선의 비용은 1 이라 가정한다.</li>
+</ul>
+
+<p><img src="/assets/images/lca-examples.png" alt="lca-example" /></p>
+
+<blockquote>
+  <p>1 번부터 임을 감안하면 1을 루트로 하는 MST 임을 알 수 있다.
+a 에서 b 로 갈 경우, 공통조상은 반드시 거치므로 비용은 a 의 깊이 + b 의 깊이 - 2* 공통조상의 깊이이다.</p>
+</blockquote>
+
+<ul>
+  <li>input
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1 -- test case
+6 -- N
+3 1 -- 여기부터 N-1 개의 간선정보
+2 4
+3 5
+1 4
+4 6
+</code></pre></div>    </div>
+  </li>
+  <li>coding</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileInputStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.LinkedList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.StringTokenizer</span><span class="o">;</span>
+
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+
+	<span class="kd">static</span> <span class="nc">BufferedReader</span> <span class="n">br</span><span class="o">;</span>
+	<span class="kd">static</span> <span class="nc">StringTokenizer</span> <span class="n">st</span><span class="o">;</span>
+	<span class="kd">static</span> <span class="kt">int</span> <span class="no">N</span><span class="o">,</span> <span class="no">T</span><span class="o">;</span>
+	<span class="kd">static</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;[]</span> <span class="n">adjList</span><span class="o">;</span>
+	<span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">depth</span><span class="o">,</span><span class="n">visited</span><span class="o">;</span>
+	<span class="kd">static</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">parent</span><span class="o">;</span>
+	<span class="kd">static</span> <span class="kt">int</span> <span class="no">DEPTH_SIZE</span> <span class="o">=</span> <span class="mi">17</span><span class="o">;</span> <span class="c1">// 깊이 17 단계임을 고려함.</span>
+
+	<span class="kd">static</span> <span class="kt">void</span> <span class="nf">bfs</span><span class="o">(</span><span class="kt">int</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">LinkedList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LinkedList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;();</span>
+		<span class="n">queue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+		<span class="n">visited</span><span class="o">[</span><span class="n">s</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+		<span class="n">parent</span><span class="o">[</span><span class="n">s</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+		<span class="k">while</span><span class="o">(!</span><span class="n">queue</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+			<span class="kt">int</span> <span class="n">now</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">next</span> <span class="o">:</span> <span class="n">adjList</span><span class="o">[</span><span class="n">now</span><span class="o">])</span> <span class="o">{</span>
+				<span class="k">if</span><span class="o">(</span><span class="n">visited</span><span class="o">[</span><span class="n">next</span><span class="o">]</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="k">continue</span><span class="o">;</span>
+
+				<span class="n">depth</span><span class="o">[</span><span class="n">next</span><span class="o">]</span> <span class="o">=</span> <span class="n">depth</span><span class="o">[</span><span class="n">now</span><span class="o">]</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// 깊이를 부모의 깊이 + 1</span>
+				<span class="n">parent</span><span class="o">[</span><span class="n">next</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">now</span><span class="o">;</span> <span class="c1">// 각 부모 정보 저장</span>
+				<span class="n">visited</span><span class="o">[</span><span class="n">next</span><span class="o">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+
+				<span class="n">queue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">next</span><span class="o">);</span> <span class="c1">// 다음 노드를 큐에 넣는다</span>
+			<span class="o">}</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+
+	<span class="c1">// 공통조상 찾기 로직</span>
+	<span class="kd">static</span> <span class="kt">int</span> <span class="nf">lca</span> <span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">depth</span><span class="o">[</span><span class="n">a</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">depth</span><span class="o">[</span><span class="n">b</span><span class="o">])</span> <span class="k">return</span> <span class="n">lca</span><span class="o">(</span><span class="n">b</span><span class="o">,</span><span class="n">a</span><span class="o">);</span> <span class="c1">// a 를 깊은것으로 한다.</span>
+
+		<span class="c1">// 깊이 맞추기 (아래서 위로 올라가면서..)</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="no">DEPTH_SIZE</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="k">if</span><span class="o">(((</span><span class="n">depth</span><span class="o">[</span><span class="n">a</span><span class="o">]</span> <span class="o">-</span> <span class="n">depth</span><span class="o">[</span><span class="n">b</span><span class="o">])</span> <span class="o">&amp;</span> <span class="o">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="o">))</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">)</span> <span class="n">a</span> <span class="o">=</span> <span class="n">parent</span><span class="o">[</span><span class="n">a</span><span class="o">][</span><span class="n">i</span><span class="o">];</span> <span class="c1">// 1 을 하나씩 옮겨가며 맞으면 a 업데이트</span>
+		<span class="o">}</span>
+
+		<span class="c1">// 이후 두 값이 같으면 종료</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="o">)</span> <span class="k">return</span> <span class="n">a</span><span class="o">;</span>
+
+		<span class="c1">// 공통 조상 찾기 (위에서 아래로 내려가면서..)</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="no">DEPTH_SIZE</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;=</span><span class="mi">0</span> <span class="o">;</span> <span class="n">i</span><span class="o">--)</span> <span class="o">{</span>
+			<span class="k">if</span><span class="o">(</span><span class="n">parent</span><span class="o">[</span><span class="n">a</span><span class="o">][</span><span class="n">i</span><span class="o">]</span> <span class="o">!=</span> <span class="n">parent</span><span class="o">[</span><span class="n">b</span><span class="o">][</span><span class="n">i</span><span class="o">])</span> <span class="o">{</span>
+				<span class="n">a</span> <span class="o">=</span> <span class="n">parent</span><span class="o">[</span><span class="n">a</span><span class="o">][</span><span class="n">i</span><span class="o">];</span>
+				<span class="n">b</span> <span class="o">=</span> <span class="n">parent</span><span class="o">[</span><span class="n">b</span><span class="o">][</span><span class="n">i</span><span class="o">];</span>
+			<span class="o">}</span>
+		<span class="o">}</span>
+		<span class="k">return</span> <span class="n">parent</span><span class="o">[</span><span class="n">a</span><span class="o">][</span><span class="mi">0</span><span class="o">];</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+
+		<span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">InputStreamReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"C:\\sample_input.txt"</span><span class="o">)));</span>
+		<span class="no">T</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
+
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">test_case</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">test_case</span> <span class="o">&lt;=</span> <span class="no">T</span><span class="o">;</span> <span class="n">test_case</span> <span class="o">++)</span> <span class="o">{</span>
+
+			<span class="no">N</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
+			<span class="n">adjList</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">[</span><span class="no">N</span><span class="o">+</span><span class="mi">1</span><span class="o">];</span>
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="no">N</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+				<span class="n">adjList</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;();</span>
+			<span class="o">}</span>
+
+			<span class="c1">// N-1 개의 간선 정보가 주어진다.</span>
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="no">N</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+				<span class="n">st</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringTokenizer</span><span class="o">(</span><span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
+				<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">nextToken</span><span class="o">());</span>
+				<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">nextToken</span><span class="o">());</span>
+				<span class="n">adjList</span><span class="o">[</span><span class="n">a</span><span class="o">].</span><span class="na">add</span><span class="o">(</span><span class="n">b</span><span class="o">);</span> <span class="c1">// 양방향이므로 두개 입력</span>
+				<span class="n">adjList</span><span class="o">[</span><span class="n">b</span><span class="o">].</span><span class="na">add</span><span class="o">(</span><span class="n">a</span><span class="o">);</span> <span class="c1">// 양방향이므로 두개 입력</span>
+			<span class="o">}</span>
+
+
+
+			<span class="c1">// BFS 를 이용하여 루트를 기준으로 각 깊이와 sparsetable 초기화한다.</span>
+			<span class="n">visited</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="no">N</span><span class="o">+</span><span class="mi">1</span><span class="o">];</span>
+			<span class="n">depth</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="no">N</span><span class="o">+</span><span class="mi">1</span><span class="o">];</span>
+			<span class="n">parent</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="no">N</span><span class="o">+</span><span class="mi">1</span><span class="o">][</span><span class="no">DEPTH_SIZE</span><span class="o">+</span><span class="mi">1</span><span class="o">];</span> <span class="c1">// parent[i][j] : i 노드의 2^j 번째 부모</span>
+
+
+			<span class="n">bfs</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+
+			<span class="c1">// 부모 이상의 spase table 을 구성한다. 바로 위부터 진행하므로 j = 1 부터..</span>
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="no">DEPTH_SIZE</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+				<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="no">N</span> <span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+					<span class="n">parent</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">parent</span><span class="o">[</span><span class="n">parent</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">]][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">];</span> <span class="c1">//** 중요</span>
+				<span class="o">}</span>
+			<span class="o">}</span>
+
+			<span class="kt">long</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="no">N</span> <span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+				<span class="n">ans</span> <span class="o">+=</span> <span class="o">(</span><span class="n">depth</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="n">depth</span><span class="o">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">depth</span><span class="o">[</span><span class="n">lca</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">)]);</span>
+			<span class="o">}</span>
+
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"#"</span><span class="o">+</span><span class="n">test_case</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">ans</span><span class="o">);</span>
+
+
+
+		<span class="o">}</span>
+	<span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>정답
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#1 14
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="https://dcjamespark.github.io/03_toyproject/2021/03/12/panabara/">
+            주식 관리 프로그램
+            <small>12 Mar 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="https://dcjamespark.github.io/01_algorithm/2021/03/10/priorityqueue-copy/">
+            우선순위큐 (Priority Queue)
+            <small>10 Mar 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="https://dcjamespark.github.io/01_algorithm/2021/03/09/kmp/">
+            KMP 알고리즘
+            <small>09 Mar 2021</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

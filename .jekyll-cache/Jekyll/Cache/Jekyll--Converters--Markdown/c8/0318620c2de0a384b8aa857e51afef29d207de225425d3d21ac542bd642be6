@@ -1,0 +1,94 @@
+I"�!<p>문자열에서 특정 패턴을 검색할 수 있다.</p>
+
+<ul>
+  <li>특이 사항으로는 실패함수를 생성하여 로직을 구현한다.</li>
+</ul>
+
+<h3 id="예제">예제</h3>
+<ul>
+  <li>아래의 문자열에서 패턴에 대응되는 횟수를 찾아라.</li>
+</ul>
+
+<blockquote>
+  <p>KMP 알고리즘은 실패함수구하기, 패턴검색하기에서 while 구문 두번, i++,j++ 이 들어간다는 점을 기억하자.</p>
+</blockquote>
+
+<ul>
+  <li>input
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1 -- test case
+ABCDEFGABCDABCABCDEABD -- 탐색 대상 문자열
+BCD -- 패턴 문자열
+</code></pre></div>    </div>
+  </li>
+  <li>coding</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileInputStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.StringTokenizer</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Solution</span><span class="o">{</span>
+	
+	<span class="kd">static</span> <span class="kt">int</span> <span class="no">T</span><span class="o">;</span>
+	<span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="no">F</span><span class="o">;</span>
+	<span class="kd">static</span> <span class="kt">char</span><span class="o">[]</span> <span class="no">S</span><span class="o">,</span> <span class="no">P</span><span class="o">;</span>
+	<span class="kd">static</span> <span class="nc">BufferedReader</span> <span class="n">br</span><span class="o">;</span>
+	<span class="kd">static</span> <span class="nc">StringTokenizer</span> <span class="n">st</span><span class="o">;</span>
+	
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span><span class="o">{</span>
+		
+		<span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">InputStreamReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"C:\\sample_input.txt"</span><span class="o">)));</span>
+		<span class="no">T</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">test_case</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">test_case</span> <span class="o">&lt;=</span> <span class="no">T</span><span class="o">;</span> <span class="n">test_case</span><span class="o">++)</span> <span class="o">{</span>
+			
+			<span class="c1">// 문자배열로 저장</span>
+			<span class="no">S</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">().</span><span class="na">toCharArray</span><span class="o">();</span>
+			<span class="no">P</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">().</span><span class="na">toCharArray</span><span class="o">();</span>
+			
+			<span class="c1">// 실패함수 생성 : 패턴길이 + 1</span>
+			<span class="no">F</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="no">P</span><span class="o">.</span><span class="na">length</span><span class="o">+</span><span class="mi">1</span><span class="o">];</span>
+			<span class="no">F</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span> <span class="c1">// 0 번 인덱스는 -1 로 초기화</span>
+			
+			<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+			<span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+			
+			<span class="c1">// 두번의 while 이 있음</span>
+			<span class="k">while</span><span class="o">(</span><span class="no">P</span><span class="o">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+				<span class="k">while</span><span class="o">(</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="no">P</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">!=</span> <span class="no">P</span><span class="o">[</span><span class="n">j</span><span class="o">])</span> <span class="n">j</span> <span class="o">=</span> <span class="no">F</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+				<span class="n">i</span><span class="o">++;</span> <span class="n">j</span><span class="o">++;</span>
+				<span class="no">F</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">j</span><span class="o">;</span>
+			<span class="o">}</span>
+			
+			<span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+			
+			<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+			<span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+			<span class="c1">// 패턴 횟수 구하기</span>
+			<span class="k">while</span><span class="o">(</span><span class="no">S</span><span class="o">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+				<span class="k">while</span><span class="o">(</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="no">S</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">!=</span> <span class="no">P</span><span class="o">[</span><span class="n">j</span><span class="o">])</span> <span class="n">j</span> <span class="o">=</span> <span class="no">F</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+				
+				<span class="n">i</span><span class="o">++;</span> <span class="n">j</span><span class="o">++;</span>
+				
+				<span class="k">if</span><span class="o">(</span><span class="no">P</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">j</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// j 가 패턴의 길이와 같다면 조건을 만족했으므로 카운트함.</span>
+					<span class="n">cnt</span><span class="o">++;</span> 
+					<span class="n">j</span> <span class="o">=</span> <span class="no">F</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+				<span class="o">}</span>
+			<span class="o">}</span>
+			
+			<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"#"</span> <span class="o">+</span> <span class="n">test_case</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">cnt</span><span class="o">);</span>
+		<span class="o">}</span>
+		
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>정답
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#1 4
+</code></pre></div>    </div>
+  </li>
+  <li>아래 그림 참조하여 기억하자.
+<img src="/assets/images/kmp-summary.jpg" alt="kmp-example" /></li>
+</ul>
+:ET

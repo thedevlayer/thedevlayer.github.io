@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
- <title>Homines, dum docent, discunt</title>
- <link href="https://dcjamespark.github.io/atom.xml" rel="self"/>
- <link href="https://dcjamespark.github.io/"/>
- <updated>2021-07-05T20:30:12+09:00</updated>
- <id>https://dcjamespark.github.io</id>
+ <title>Developer Note</title>
+ <link href="https://thedevlayer.github.io/atom.xml" rel="self"/>
+ <link href="https://thedevlayer.github.io/"/>
+ <updated>2021-07-06T20:47:16+09:00</updated>
+ <id>https://thedevlayer.github.io</id>
  <author>
    <name>dcp</name>
-   <email>dcjamespark@gmail.com</email>
+   <email>thedevlayer@gmail.com</email>
  </author>
 
  
  <entry>
    <title>주식 관리 프로그램</title>
-   <link href="https://dcjamespark.github.io/03_toyproject/2021/03/12/panabara/"/>
+   <link href="https://thedevlayer.github.io/03_toyproject/2021/03/12/panabara/"/>
    <updated>2021-03-12T00:00:00+09:00</updated>
-   <id>https://dcjamespark.github.io/03_toyproject/2021/03/12/panabara</id>
+   <id>https://thedevlayer.github.io/03_toyproject/2021/03/12/panabara</id>
    <content type="html">&lt;h4 id=&quot;분산된-투자-종목들을-한번에-관리하고-투자-유형별-종목별로-자산-현황을-쉽게-파악하고자-아래와-같이-간단히-구성하였다&quot;&gt;분산된 투자 종목들을 한번에 관리하고 투자 유형별, 종목별로 자산 현황을 쉽게 파악하고자 아래와 같이 간단히 구성하였다.&lt;/h4&gt;
 
 &lt;ul&gt;
@@ -94,9 +94,9 @@
  
  <entry>
    <title>우선순위큐 (Priority Queue)</title>
-   <link href="https://dcjamespark.github.io/01_algorithm/2021/03/10/priorityqueue-copy/"/>
+   <link href="https://thedevlayer.github.io/01_algorithm/2021/03/10/priorityqueue-copy/"/>
    <updated>2021-03-10T00:00:00+09:00</updated>
-   <id>https://dcjamespark.github.io/01_algorithm/2021/03/10/priorityqueue copy</id>
+   <id>https://thedevlayer.github.io/01_algorithm/2021/03/10/priorityqueue copy</id>
    <content type="html">&lt;p&gt;우선순위는 일반적으로 먼저 들어간 데이터가 먼저 나오는 큐와는 다른, 별도로 정의된 규칙에 따른 우선순위대로 나오는 큐를 말한다.
 클래스 선언 시 Comparable 을 이용하여 구현 가능하며, Comparator 의 클래스로도 사용할 수 있다. 본 장에서는 Comparable 를 활용한 예제를 나타내었다.
 동일 조건일 때는 return 이전에 if 문으로 분기하여 추가 구현 가능하다.&lt;/p&gt;
@@ -164,9 +164,9 @@
  
  <entry>
    <title>KMP 알고리즘</title>
-   <link href="https://dcjamespark.github.io/01_algorithm/2021/03/09/kmp/"/>
+   <link href="https://thedevlayer.github.io/01_algorithm/2021/03/09/kmp/"/>
    <updated>2021-03-09T00:00:00+09:00</updated>
-   <id>https://dcjamespark.github.io/01_algorithm/2021/03/09/kmp</id>
+   <id>https://thedevlayer.github.io/01_algorithm/2021/03/09/kmp</id>
    <content type="html">&lt;p&gt;문자열에서 특정 패턴을 검색할 수 있다.&lt;/p&gt;
 
 &lt;ul&gt;
@@ -265,9 +265,9 @@ BCD -- 패턴 문자열
  
  <entry>
    <title>LCA (Low Common Ancestor)</title>
-   <link href="https://dcjamespark.github.io/01_algorithm/2021/03/08/lca/"/>
+   <link href="https://thedevlayer.github.io/01_algorithm/2021/03/08/lca/"/>
    <updated>2021-03-08T00:00:00+09:00</updated>
-   <id>https://dcjamespark.github.io/01_algorithm/2021/03/08/lca</id>
+   <id>https://thedevlayer.github.io/01_algorithm/2021/03/08/lca</id>
    <content type="html">&lt;p&gt;LCA 는 트리 노드에서 공통 조상을 찾는 로직이다. 로직 구성은 아래와 같다.&lt;/p&gt;
 
 &lt;ol&gt;
@@ -434,9 +434,9 @@ a 에서 b 로 갈 경우, 공통조상은 반드시 거치므로 비용은 a �
  
  <entry>
    <title>파이썬을 이용한 주식관리 프로그램</title>
-   <link href="https://dcjamespark.github.io/03_toyproject/2020/01/03/toy-creon/"/>
+   <link href="https://thedevlayer.github.io/03_toyproject/2020/01/03/toy-creon/"/>
    <updated>2020-01-03T00:00:00+09:00</updated>
-   <id>https://dcjamespark.github.io/03_toyproject/2020/01/03/toy-creon</id>
+   <id>https://thedevlayer.github.io/03_toyproject/2020/01/03/toy-creon</id>
    <content type="html">&lt;!-- ## 목차
 1. [프로젝트 목적](#1장.-프로젝트-목적)
 1. [프로젝트 개요](#프로젝트-개요)
@@ -485,7 +485,7 @@ a 에서 b 로 갈 경우, 공통조상은 반드시 거치므로 비용은 a �
 &lt;hr /&gt;
 &lt;h2 id=&quot;3장-프로젝트-소스&quot;&gt;3장. 프로젝트 소스&lt;/h2&gt;
 &lt;ul&gt;
-  &lt;li&gt;접속링크 :  &lt;a href=&quot;https://github.com/dcjamespark/Creon-with-Python&quot;&gt;Github&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;접속링크 :  &lt;a href=&quot;https://github.com/thedevlayer/Creon-with-Python&quot;&gt;Github&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;
@@ -812,9 +812,9 @@ a 에서 b 로 갈 경우, 공통조상은 반드시 거치므로 비용은 a �
  
  <entry>
    <title>Simple Neural Network</title>
-   <link href="https://dcjamespark.github.io/02_ai/2019/12/31/simpleneuralnetwork/"/>
+   <link href="https://thedevlayer.github.io/02_ai/2019/12/31/simpleneuralnetwork/"/>
    <updated>2019-12-31T00:00:00+09:00</updated>
-   <id>https://dcjamespark.github.io/02_ai/2019/12/31/simpleneuralnetwork</id>
+   <id>https://thedevlayer.github.io/02_ai/2019/12/31/simpleneuralnetwork</id>
    <content type="html">&lt;h4 id=&quot;this-is-from-codelab-where-located-in-httpscodelabsdevelopersgooglecomcodelabsneural-tensorflow-jsindexhtmlindex2findex0&quot;&gt;This is from codelab where located in &lt;a href=&quot;https://codelabs.developers.google.com/codelabs/neural-tensorflow-js/index.html?index=..%2F..index#0&quot;&gt;https://codelabs.developers.google.com/codelabs/neural-tensorflow-js/index.html?index=..%2F..index#0&lt;/a&gt;&lt;/h4&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/neuralsample.jpeg&quot; /&gt;&lt;/p&gt;

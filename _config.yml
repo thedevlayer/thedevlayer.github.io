@@ -5,18 +5,18 @@ permalink:           pretty
 #relative_permalinks: true
 
 # Setup
-title:               "Homines, dum docent, discunt"
+title:               "Developer Note"
 tagline:             'Day by day, in Everyway, I am getting better and better'
 description:         'One a day'
-url:                 https://dcjamespark.github.io
+url:                 https://thedevlayer.github.io
 baseurl:             ''
 paginate:            5
 
 # About/contact
 author:
   name:              dcp
-  url:               https://dcjamespark.github.io
-  email:             dcjamespark@gmail.com
+  url:               https://thedevlayer.github.io
+  email:             thedevlayer@gmail.com
 
 # Custom vars
 version:             1.0.0
@@ -40,7 +40,7 @@ google_analytics:
   ua: 'UA-109898110-1'
 
 github:
-  repo: 'https://github.com/dcjamespark/dcjamespark.github.io'
+  repo: 'https://github.com/thedevlayer/thedevlayer.github.io'
 
 category_dir: category/
 tag_dir: tag/

@@ -46,7 +46,7 @@ $ git init
 ## 3. Github 연결 설정
 
 ```
-dc@ MINGW64 /c/gitShare (master)
+dc@ MINGW64 /c/gitShare (master) 
 $ git remote add origin [git address]
 ```
 

@@ -4,7 +4,7 @@
  <title>Developer Note</title>
  <link href="https://thedevlayer.github.io/atom.xml" rel="self"/>
  <link href="https://thedevlayer.github.io/"/>
- <updated>2021-07-07T20:35:11+09:00</updated>
+ <updated>2021-07-07T20:47:23+09:00</updated>
  <id>https://thedevlayer.github.io</id>
  <author>
    <name>dcp</name>
@@ -61,7 +61,7 @@ $ git init
 
 &lt;h2 id=&quot;3-github-연결-설정&quot;&gt;3. Github 연결 설정&lt;/h2&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;dc@ MINGW64 /c/gitShare (master)
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;dc@ MINGW64 /c/gitShare (master) 
 $ git remote add origin [git address]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 

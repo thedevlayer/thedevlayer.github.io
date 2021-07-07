@@ -1,0 +1,79 @@
+I"�<h2 id="로컬-저장소를-github-에-올리고-싶다면-">로컬 저장소를 Github 에 올리고 싶다면 ??</h2>
+
+<ul>
+  <li>로컬에 있는 데이터 및 소스들을 Github 에 올리기 위해 필요한 절차 및 명령어를 간단히 정리해 보고자 한다.</li>
+</ul>
+
+<ol>
+  <li>Local Directory 생성</li>
+</ol>
+
+<p><img src="/assets/images/gitset1.jpg" alt="generateFolder" /></p>
+
+<p>위 C:\gitShare 폴더에 Github 에 올리고자하는 폴더 및 파일들이 있다고 가정하다. 먼저 gitBash 에서 아래와 같이 .git repository 를 생성하기 위해 아래 명령어가 필요하다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dc@ MINGW64 /c/gitShare
+$ git init
+</code></pre></div></div>
+
+<p>아래와 같이 .git 디렉토리가 생성된 것을 확인할 수 있다.
+<img src="/assets/images/gitset2.jpg" alt="generateFolder" /></p>
+
+<ol>
+  <li>Git Repository 생성</li>
+</ol>
+
+<p>Github 에서 push 할 저장소인 원격 repository 를 아래 메뉴를 통해 생성한다.
+<img src="/assets/images/gitset3.jpg" alt="generateFolder" /></p>
+
+<p>Repository 생성 후, 아래 주소를 복사한다.
+<img src="/assets/images/gitset4.jpg" alt="generateFolder" /></p>
+
+<ol>
+  <li>Github 연결 설정</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dc@ MINGW64 /c/gitShare (master)
+$ git remote add origin [git address]
+</code></pre></div></div>
+
+<p>위와 같이 복사한 주소를 git remote add origin [복사 주소] 명령어를 통해 Local Repository 를 원격 저장소와 동기화 한다.
+필요 시, Github 계정을 통해 인증한다.</p>
+
+<ol>
+  <li>Commit and Push</li>
+</ol>
+
+<p>Working directory 데이터를 git Repository 로 옮기기 위해 아래 명령이 필요하다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dc@ MINGW64 /c/gitShare (master)
+$ git add .
+
+dc@ MINGW64 /c/gitShare (master)
+$ git commit -m "init"
+[master (root-commit) 97d2ae3] init
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 test.txt
+</code></pre></div></div>
+
+<p>이후 Push 명령어를 통해 Github repository 에 올릴 수 있다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dc@MINGW64 /c/gitShare (master)
+$ git push origin master
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 203 bytes | 67.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'master' on GitHub by visiting:
+remote:      https://github.com/thedevlayer/test/pull/new/master
+remote:
+To https://github.com/thedevlayer/test.git
+ * [new branch]      master -&gt; master
+</code></pre></div></div>
+
+<p>Github 에서 아래와 같이 해당 데이터가 올라온 것을 확인할 수 있다.</p>
+
+<p><img src="/assets/images/gitset5.jpg" alt="generateFolder" /></p>
+
+:ET

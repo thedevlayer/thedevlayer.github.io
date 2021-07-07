@@ -1,0 +1,22 @@
+I"	<h2 id="로컬-저장소를-github-에-올리고-싶다면-">로컬 저장소를 Github 에 올리고 싶다면 ??</h2>
+
+<ul>
+  <li>로컬에 있는 데이터 및 소스들을 Github 에 올리기 위해 필요한 절차 및 명령어를 간단히 정리해 보고자 한다.</li>
+</ul>
+
+<ol>
+  <li>Local Directory 생성</li>
+</ol>
+
+<p><img src="/assets/images/gitset1.jpg" alt="generateFolder" class="border" /></p>
+
+<ol>
+  <li>
+    <p>Git Repository 생성</p>
+  </li>
+  <li>
+    <p>Commit and Push</p>
+  </li>
+</ol>
+
+:ET

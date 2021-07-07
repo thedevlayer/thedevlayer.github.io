@@ -1,5 +1,26 @@
 -- category definition
 
+> git config --global user.email "maxmin93@gmail.com"
+ 
+> git config --global user.name "tonyne.jeju"
+ 
+> git init
+Initialized empty Git repository in D:/workspaces/nodejs/meadowlark/.git/
+ 
+> git remote add origin https://github.com/maxmin93/node-ex-meadowlark
+ 
+> git add -A
+warning: LF will be replaced by CRLF in package.json.
+The file will have its original line endings in your working directory.
+ 
+> git commit -m "Initial commit"
+
+ 
+> git push origin master
+
+
+
+
 
 1 
 2
